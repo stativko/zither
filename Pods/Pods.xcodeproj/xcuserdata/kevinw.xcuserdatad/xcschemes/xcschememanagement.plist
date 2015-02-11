@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-BZGFormViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -25,6 +30,11 @@
 			<false/>
 		</dict>
 		<key>Pods-ReactiveCocoa.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-SVProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -52,47 +62,57 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0E2A0659E91F764FCA0FD8A9</key>
+		<key>0A03AA9B851282616F7F3BC0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2268F848A0310D6E790E6147</key>
+		<key>0A9E023BFAAC0B4A49861410</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5A1AB8C8BC3AB6E4BB9E6D06</key>
+		<key>0AB31B0DC821F317C5747E99</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>92CD392E1A536DC6FB91FFD9</key>
+		<key>1FCE1C4D640847BC58F806D0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>98D3216A4F0457A9FE08B32A</key>
+		<key>26D3473DF34DEB01DD4DD38C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A493BDDA0EC596D8864B7728</key>
+		<key>3676A0EC913222FC26289CD7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B19A3FEE1401F48852A99FF6</key>
+		<key>5F05FBD7697C2A13AFD095C1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CE12F210292996DCE85B908E</key>
+		<key>7329E5BEFD84CF61F50A87C8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E812C960125ECAC9721745CE</key>
+		<key>7A567F2BFC68955AE7DB13DD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9AEA2A7E5DF633DE5A775363</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A20DC19D0F964D0FD7346FC6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
