@@ -26,8 +26,9 @@
     [self.imageView setImage:placeholderImage];
 
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.imageUrl]];
+    UIActivityIndicatorView *av = [UIActivityIndicatorView createActivityIndicatorInView:self.view style:UIActivityIndicatorViewStyleGray offset:UIOffsetZero];
     [self.imageView setImageWithURLRequest:request placeholderImage:placeholderImage success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-
+        [av removeFromSuperview];
         [self.imageView setImage:image];
         [self updateImageViewFrame];
         [self.scrollView setMinimumZoomScale:1.0f];

@@ -27,17 +27,23 @@
 
     UIImage *placeholderImage = [UIImage imageNamed:@"product_placeholder"];
 
-    [self.productImageView cancelImageRequestOperation];
-    [self.productImageView setImage:placeholderImage];
 
     PFFile *productImage = product[@"productImage"];
     NSString *productImageUrl = product[@"productImageUrl"];
 
     if (productImage.url) {
-
-        [self.productImageView setImageWithURL:[NSURL URLWithString:productImage.url] placeholderImage:placeholderImage];
+        UIActivityIndicatorView *av = [UIActivityIndicatorView createActivityIndicatorInView:self.productImageView style:UIActivityIndicatorViewStyleGray offset:UIOffsetZero];
+        [productImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            [av removeFromSuperview];
+            if (data) {
+                UIImage *image = [UIImage imageWithData:data];
+                self.productImageView.image = image;
+            }
+        }];
     }
     else if (productImageUrl) {
+        [self.productImageView cancelImageRequestOperation];
+        [self.productImageView setImage:placeholderImage];
 
         [self.productImageView setImageWithURL:[NSURL URLWithString:productImageUrl] placeholderImage:placeholderImage];
     }

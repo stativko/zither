@@ -26,6 +26,7 @@
 	// Do any additional setup after loading the view.
 
     [self applyProductToFields];
+//    [self.product fetchIfNeededInBackground];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -49,8 +50,12 @@
     [self.productImageView setImage:placeholderImage];
 
     if (productImage.url) {
-
-        [self.productImageView setImageWithURL:[NSURL URLWithString:productImage.url] placeholderImage:placeholderImage];
+        [productImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (data) {
+                UIImage *image = [UIImage imageWithData:data];
+                self.productImageView.image = image;
+            }
+        }];
     }
     else if (productImageUrl) {
 

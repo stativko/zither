@@ -20,7 +20,10 @@ enum {
 };
 
 @implementation SSIEditProductCell
-
+-(void)prepareForReuse {
+    [super prepareForReuse];
+    self.productImageView.image = nil;
+}
 @end
 
 #define HEADER_HEIGHT 44.0
@@ -70,7 +73,13 @@ enum {
     [self.lblNavTitle setText:(self.shouldAddProduct == YES) ? @"Add Product" : @"Edit Product"];
 
     [self configureCells];
+    [self.tableView reloadData];
     [self applyProductToCells];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
 }
 
 - (void)configureCells
@@ -123,18 +132,7 @@ enum {
     self.purchasedFromCell.shouldChangeTextBlock = ^BOOL(BZGTextFieldCell *cell, NSString *newText) {
         return YES;
     };
-/*
-    // product url
-    self.productURLCell = [BZGTextFieldCell new];
-    self.productURLCell.label.font = cellLabelFont;
-    self.productURLCell.label.text = @"URL";
-    self.productURLCell.textField.font = cellTextFieldFont;
-    self.productURLCell.textField.placeholder = @"Product Url";
-    self.productURLCell.textField.keyboardType = UIKeyboardTypeURL;
-    self.productURLCell.shouldChangeTextBlock = ^BOOL(BZGTextFieldCell *cell, NSString *newText) {
-        return YES;
-    };
-*/
+
     self.productReceiptCell = [self.tableView dequeueReusableCellWithIdentifier:@"productReceiptCell"];
     self.productImageCell = [self.tableView dequeueReusableCellWithIdentifier:@"productImageCell"];
     self.productSerialNumberCell = [self.tableView dequeueReusableCellWithIdentifier:@"productSerialNumberCell"];
@@ -148,41 +146,37 @@ enum {
 - (void)applyProductToCells
 {
     self.isWarrantyEdit = NO;
-    
     self.productNameCell.textField.text = self.product[@"productName"];
     self.purchasedOnCell.textField.text = [SSIUtils stringFromDate:self.product[@"purchasedOn"] type:DATETYPE_EDITPRODUCT];
     self.warrantyCell.textField.text = [SSIUtils warrantyStringFromProduct:self.product];
     self.purchasedFromCell.textField.text = self.product[@"purchasedFrom"];
-//    self.productURLCell.textField.text = self.product[@"productURL"];
     [self.noteCell.noteTextView setText:self.product[@"note"]];
 
     PFFile *productReceipt = self.product[@"productReceipt"];
     PFFile *productImage = self.product[@"productImage"];
     PFFile *productSerialNumber = self.product[@"productSerialNumber"];
-    NSString *productReceiptUrl = self.product[@"productReceiptUrl"];
     NSString *productImageUrl = self.product[@"productImageUrl"];
-    NSString *productSerialNumberUrl = self.product[@"productSerialNumberUrl"];
-
     UIImage *placeholderImage = [UIImage imageNamed:@"product_placeholder"];
 
-//    [self.productReceiptCell.productReceiptImageView setImage:placeholderImage];
-//    [self.productReceiptCell.productReceiptImageView setBackgroundColor:[UIColor whiteColor]];
 
     if (productReceipt.url) {
-
-        [self.productReceiptCell.productReceiptImageView setImageWithURL:[NSURL URLWithString:productReceipt.url] placeholderImage:placeholderImage];
+        [self.productReceiptCell.productImageView setImage:placeholderImage];
+        [productReceipt getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (data) {
+                UIImage *image = [UIImage imageWithData:data];
+                self.productReceiptCell.productImageView.image = image;
+            }
+        }];
     }
-    else if (productReceiptUrl) {
-
-        [self.productReceiptCell.productReceiptImageView setImageWithURL:[NSURL URLWithString:productReceiptUrl] placeholderImage:placeholderImage];
-    }
-
-//    [self.productReceiptCell.productImageView setImage:placeholderImage];
-//    [self.productReceiptCell.productImageView setBackgroundColor:[UIColor whiteColor]];
-
     if (productImage.url) {
+        [self.productImageCell.productImageView setImage:placeholderImage];
 
-        [self.productImageCell.productImageView setImageWithURL:[NSURL URLWithString:productImage.url] placeholderImage:placeholderImage];
+        [productImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (data) {
+                UIImage *image = [UIImage imageWithData:data];
+                [self.productImageCell.productImageView setImage:image];
+            }
+        }];
     }
     else if (productImageUrl) {
 
@@ -190,12 +184,14 @@ enum {
     }
 
     if (productSerialNumber.url) {
+        [self.productSerialNumberCell.productImageView setImage:placeholderImage];
 
-        [self.productSerialNumberCell.productImageView setImageWithURL:[NSURL URLWithString:productSerialNumber.url] placeholderImage:placeholderImage];
-    }
-    else if (productSerialNumberUrl) {
-
-        [self.productSerialNumberCell.productImageView setImageWithURL:[NSURL URLWithString:productSerialNumberUrl] placeholderImage:placeholderImage];
+        [productSerialNumber getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (data) {
+                UIImage *image = [UIImage imageWithData:data];
+                self.productSerialNumberCell.productImageView.image = image;
+            }
+        }];
     }
 }
 
@@ -279,8 +275,8 @@ enum {
     image = [SSIUtils scaledImage:image toSize:CGSizeMake(thres, thres)];
     if (self.imagePickerIndex == CHOOSE_PRODUCT_RECEIPT) {
 
-        [self.productReceiptCell.productReceiptImageView cancelImageRequestOperation];
-        self.productReceiptCell.productReceiptImageView.image = image;
+        [self.productReceiptCell.productImageView cancelImageRequestOperation];
+        self.productReceiptCell.productImageView.image = image;
         self.productReceipt_New = image;
     }
     else if (self.imagePickerIndex == CHOOSE_PRODUCT_IMAGE) {
@@ -373,7 +369,6 @@ enum {
     };
 
     if (self.productReceipt_New) {
-
         PFFile *productReceipt = [PFFile fileWithData:UIImagePNGRepresentation(self.productReceipt_New)];
         [productReceipt saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
 

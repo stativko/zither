@@ -24,11 +24,14 @@
     NSString *productImageUrl = product[@"productImageUrl"];
 
     if (productImage.url) {
-
-        [self.productImageView setImageWithURL:[NSURL URLWithString:productImage.url] placeholderImage:placeholderImage];
+        [productImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (data) {
+                UIImage *image = [UIImage imageWithData:data];
+                self.productImageView.image = image;
+            }
+        }];
     }
     else if (productImageUrl) {
-
         [self.productImageView setImageWithURL:[NSURL URLWithString:productImageUrl] placeholderImage:placeholderImage];
     }
 }

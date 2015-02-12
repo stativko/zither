@@ -10,7 +10,6 @@
 
 @interface SSIEditProductCell : UITableViewCell
 
-@property (nonatomic, weak) IBOutlet UIImageView *productReceiptImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *productImageView;
 @property (nonatomic, weak) IBOutlet UITextView *noteTextView;
 @property (nonatomic, weak) IBOutlet UIButton *btnChooseImage;

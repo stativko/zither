@@ -10,6 +10,6 @@
 #define JSwipe_AdditionsImport_h
 
 #import "UIImageView+AFNetworking.h"
-
+#import "UIActivityIndicatorView+KLI.h"
 
 #endif

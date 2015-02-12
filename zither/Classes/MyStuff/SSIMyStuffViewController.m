@@ -42,7 +42,9 @@
     self.products = nil;
 
     [self adjustSearchBar];
+    
 }
+
 
 - (void)adjustSearchBar
 {
