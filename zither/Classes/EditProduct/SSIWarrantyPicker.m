@@ -151,7 +151,7 @@
 {
     if (component == 0) {
 
-        return [NSString stringWithFormat:@"%lu", row];
+        return [NSString stringWithFormat:@"%lu", (long)row];
     }
     else {
 

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		268C10B71A8BDC5700F77BCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 268C10B61A8BDC5700F77BCF /* main.m */; };
 		268C10C21A8BDC5700F77BCF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 268C10C11A8BDC5700F77BCF /* Images.xcassets */; };
-		268C10D11A8BDC5800F77BCF /* zitherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 268C10D01A8BDC5800F77BCF /* zitherTests.m */; };
 		268C10DE1A8BDDFC00F77BCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 268C10B61A8BDC5700F77BCF /* main.m */; };
 		268C10E31A8BDDFC00F77BCF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 268C10C11A8BDC5700F77BCF /* Images.xcassets */; };
 		26A9FD0C1A8BE6D800E87E53 /* SSIAddProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A9FCD51A8BE6D800E87E53 /* SSIAddProductViewController.m */; };
@@ -148,23 +147,12 @@
 		EBA0A55DE65D1E571746477D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F9FB293418673B1413F3CF /* libPods.a */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		268C10CB1A8BDC5800F77BCF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 268C10A91A8BDC5700F77BCF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 268C10B01A8BDC5700F77BCF;
-			remoteInfo = zither;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		1B0E00F61876B2C6D011CE1B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		268C10B11A8BDC5700F77BCF /* zither.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zither.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		268C10B51A8BDC5700F77BCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		268C10B61A8BDC5700F77BCF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		268C10C11A8BDC5700F77BCF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		268C10CA1A8BDC5800F77BCF /* zitherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = zitherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		268C10CF1A8BDC5800F77BCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		268C10D01A8BDC5800F77BCF /* zitherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = zitherTests.m; sourceTree = "<group>"; };
 		268C10E71A8BDDFC00F77BCF /* zither-dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "zither-dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -277,13 +265,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		268C10C71A8BDC5800F77BCF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		268C10DF1A8BDDFC00F77BCF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -315,7 +296,6 @@
 			isa = PBXGroup;
 			children = (
 				268C10B11A8BDC5700F77BCF /* zither.app */,
-				268C10CA1A8BDC5800F77BCF /* zitherTests.xctest */,
 				268C10E71A8BDDFC00F77BCF /* zither-dev.app */,
 			);
 			name = Products;
@@ -362,8 +342,8 @@
 		26A9FCD21A8BE6D800E87E53 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				26A9FD441A8BEA4300E87E53 /* Additions */,
 				26A9FD401A8BE74C00E87E53 /* Main.storyboard */,
+				26A9FD441A8BEA4300E87E53 /* Additions */,
 				26A9FD3C1A8BE70000E87E53 /* SSIAppDelegate.h */,
 				26A9FD3D1A8BE70000E87E53 /* SSIAppDelegate.m */,
 				26A9FCD31A8BE6D800E87E53 /* AddProduct */,
@@ -639,24 +619,6 @@
 			productReference = 268C10B11A8BDC5700F77BCF /* zither.app */;
 			productType = "com.apple.product-type.application";
 		};
-		268C10C91A8BDC5800F77BCF /* zitherTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 268C10D71A8BDC5800F77BCF /* Build configuration list for PBXNativeTarget "zitherTests" */;
-			buildPhases = (
-				268C10C61A8BDC5800F77BCF /* Sources */,
-				268C10C71A8BDC5800F77BCF /* Frameworks */,
-				268C10C81A8BDC5800F77BCF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				268C10CC1A8BDC5800F77BCF /* PBXTargetDependency */,
-			);
-			name = zitherTests;
-			productName = zitherTests;
-			productReference = 268C10CA1A8BDC5800F77BCF /* zitherTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		268C10DA1A8BDDFC00F77BCF /* zither-dev */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 268C10E41A8BDDFC00F77BCF /* Build configuration list for PBXNativeTarget "zither-dev" */;
@@ -689,10 +651,6 @@
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = TYUW8KDLD2;
 					};
-					268C10C91A8BDC5800F77BCF = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 268C10B01A8BDC5700F77BCF;
-					};
 					268C10DA1A8BDDFC00F77BCF = {
 						DevelopmentTeam = TYUW8KDLD2;
 					};
@@ -712,7 +670,6 @@
 			projectRoot = "";
 			targets = (
 				268C10B01A8BDC5700F77BCF /* zither */,
-				268C10C91A8BDC5800F77BCF /* zitherTests */,
 				268C10DA1A8BDDFC00F77BCF /* zither-dev */,
 			);
 		};
@@ -763,13 +720,6 @@
 				26A9FD9E1A8BF63100E87E53 /* img_tutorial_enter@2x.png in Resources */,
 				26A9FDB01A8BF63100E87E53 /* response_text.txt in Resources */,
 				26A9FDC01A8BF63100E87E53 /* signup.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		268C10C81A8BDC5800F77BCF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -917,14 +867,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		268C10C61A8BDC5800F77BCF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				268C10D11A8BDC5800F77BCF /* zitherTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		268C10DB1A8BDDFC00F77BCF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -958,14 +900,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		268C10CC1A8BDC5800F77BCF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 268C10B01A8BDC5700F77BCF /* zither */;
-			targetProxy = 268C10CB1A8BDC5800F77BCF /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
 		268C10D21A8BDC5800F77BCF /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -984,6 +918,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1003,7 +938,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PROVISIONING_PROFILE = "e16782e8-fb75-4056-a725-64c9b65fb487";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1025,7 +961,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1038,6 +975,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				PROVISIONING_PROFILE = "53419cfe-ae6b-482d-bce7-5f93cbca1328";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1051,12 +990,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_PREFIX_HEADER = "zither/Zither-Prefix.pch";
 				INFOPLIST_FILE = zither/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e16782e8-fb75-4056-a725-64c9b65fb487";
 			};
 			name = Debug;
 		};
@@ -1068,46 +1009,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_PREFIX_HEADER = "zither/Zither-Prefix.pch";
 				INFOPLIST_FILE = zither/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-			};
-			name = Release;
-		};
-		268C10D81A8BDC5800F77BCF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = zitherTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/zither.app/zither";
-			};
-			name = Debug;
-		};
-		268C10D91A8BDC5800F77BCF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = zitherTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/zither.app/zither";
+				PROVISIONING_PROFILE = "53419cfe-ae6b-482d-bce7-5f93cbca1328";
 			};
 			name = Release;
 		};
@@ -1117,12 +1026,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				GCC_PREFIX_HEADER = "zither/Zither-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/zither-dev-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "zither-dev";
+				PROVISIONING_PROFILE = "86dc0214-9e18-4709-9230-33d8e1c906eb";
 			};
 			name = Debug;
 		};
@@ -1132,14 +1043,91 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				GCC_PREFIX_HEADER = "zither/Zither-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/zither-dev-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "zither-dev";
+				PROVISIONING_PROFILE = "86dc0214-9e18-4709-9230-33d8e1c906eb";
 			};
 			name = Release;
+		};
+		26A9FDC41A8C1EBB00E87E53 /* Testflight */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCAF1BE8502091C9901CD7A3 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				PROVISIONING_PROFILE = "4bf23005-06a6-4bde-b430-e05a29843c70";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Testflight;
+		};
+		26A9FDC51A8C1EBB00E87E53 /* Testflight */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCAF1BE8502091C9901CD7A3 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				GCC_PREFIX_HEADER = "zither/Zither-Prefix.pch";
+				INFOPLIST_FILE = zither/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4bf23005-06a6-4bde-b430-e05a29843c70";
+			};
+			name = Testflight;
+		};
+		26A9FDC71A8C1EBB00E87E53 /* Testflight */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCAF1BE8502091C9901CD7A3 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				GCC_PREFIX_HEADER = "zither/Zither-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/zither-dev-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "zither-dev";
+				PROVISIONING_PROFILE = "d1b71925-9844-466a-a0f9-8fe8129e5a2c";
+			};
+			name = Testflight;
 		};
 /* End XCBuildConfiguration section */
 
@@ -1149,6 +1137,7 @@
 			buildConfigurations = (
 				268C10D21A8BDC5800F77BCF /* Debug */,
 				268C10D31A8BDC5800F77BCF /* Release */,
+				26A9FDC41A8C1EBB00E87E53 /* Testflight */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1158,15 +1147,7 @@
 			buildConfigurations = (
 				268C10D51A8BDC5800F77BCF /* Debug */,
 				268C10D61A8BDC5800F77BCF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		268C10D71A8BDC5800F77BCF /* Build configuration list for PBXNativeTarget "zitherTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				268C10D81A8BDC5800F77BCF /* Debug */,
-				268C10D91A8BDC5800F77BCF /* Release */,
+				26A9FDC51A8C1EBB00E87E53 /* Testflight */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1176,6 +1157,7 @@
 			buildConfigurations = (
 				268C10E51A8BDDFC00F77BCF /* Debug */,
 				268C10E61A8BDDFC00F77BCF /* Release */,
+				26A9FDC71A8C1EBB00E87E53 /* Testflight */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

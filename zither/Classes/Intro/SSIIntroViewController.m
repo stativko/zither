@@ -74,7 +74,7 @@
         return self.welcomeCell;
     }
 
-    NSString *identifier = [NSString stringWithFormat:@"introCell%lu", indexPath.item + 1];
+    NSString *identifier = [NSString stringWithFormat:@"introCell%lu", (NSInteger)indexPath.item + 1];
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
 
     return cell;

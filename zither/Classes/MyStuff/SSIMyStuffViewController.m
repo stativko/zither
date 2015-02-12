@@ -276,7 +276,7 @@
     }];
 
     searchBar.showsCancelButton = YES;
-
+//    [self.navigationController setNavigationBarHidden:YES animated:YES];
     return YES;
 }
 
@@ -291,6 +291,7 @@
     }];
 
     searchBar.showsCancelButton = NO;
+//    [self.navigationController setNavigationBarHidden:NO animated:YES];
 
     return YES;
 }

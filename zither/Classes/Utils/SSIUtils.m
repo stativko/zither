@@ -160,9 +160,9 @@
     }
 
     NSString *result = @"";
-    result = (year > 0) ? [result stringByAppendingFormat:@"%lu %@%@ ", year, meter[0], (year > 1) ? @"s" : @""] : result;
-    result = (month > 0) ? [result stringByAppendingFormat:@"%lu %@%@ ", month, meter[1], (month > 1) ? @"s" : @""] : result;
-    result = (day > 0) ? [result stringByAppendingFormat:@"%lu %@%@ ", day, meter[2], (day > 1) ? @"s" : @""] : result;
+    result = (year > 0) ? [result stringByAppendingFormat:@"%lu %@%@ ", (long)year, meter[0], (year > 1) ? @"s" : @""] : result;
+    result = (month > 0) ? [result stringByAppendingFormat:@"%lu %@%@ ", (long)month, meter[1], (month > 1) ? @"s" : @""] : result;
+    result = (day > 0) ? [result stringByAppendingFormat:@"%lu %@%@ ", (long)day, meter[2], (day > 1) ? @"s" : @""] : result;
 
     result = (result.length > 0) ? result : @"Expire today";
 

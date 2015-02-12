@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "268C10B01A8BDC5700F77BCF"
-               BuildableName = "Zither.app"
+               BuildableName = "zither.app"
                BlueprintName = "zither"
                ReferencedContainer = "container:zither.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "268C10B01A8BDC5700F77BCF"
-            BuildableName = "Zither.app"
+            BuildableName = "zither.app"
             BlueprintName = "zither"
             ReferencedContainer = "container:zither.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "268C10B01A8BDC5700F77BCF"
-            BuildableName = "Zither.app"
+            BuildableName = "zither.app"
             BlueprintName = "zither"
             ReferencedContainer = "container:zither.xcodeproj">
          </BuildableReference>
@@ -94,7 +94,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "268C10B01A8BDC5700F77BCF"
-            BuildableName = "Zither.app"
+            BuildableName = "zither.app"
             BlueprintName = "zither"
             ReferencedContainer = "container:zither.xcodeproj">
          </BuildableReference>
@@ -104,7 +104,7 @@
       buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Testflight"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

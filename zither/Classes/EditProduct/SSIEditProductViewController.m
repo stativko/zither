@@ -471,6 +471,7 @@ enum {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     if (indexPath.section == 0) {
 
         if (indexPath.row == 0) {
@@ -513,23 +514,23 @@ enum {
 
         return self.noteCell;
     }
-    else if (indexPath.section == 4) {
 
+
+    if (indexPath.section == 4) {
         NSString *identifier = @"deleteCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         if (cell == nil) {
-
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-            cell.contentView.backgroundColor = [UIColor redColor];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            [cell.textLabel setTextColor:[UIColor whiteColor]];
-            [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
-            [cell.textLabel setText:@"Delete"];
-            return cell;
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+        [cell.textLabel setTextColor:[UIColor redColor]];
+        [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
+        [cell.textLabel setText:@"Delete"];
+        return cell;
     }
-
-    return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"identifier"];
+    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -547,8 +548,9 @@ enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 4) {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
+    if (indexPath.section == 4) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Delete this product?" delegate:self cancelButtonTitle:@"Confirm" otherButtonTitles:@"Cancel", nil];
         alertView.tag = ALERT_DELETE;
         [alertView show];
@@ -584,7 +586,7 @@ enum {
 #pragma mark -
 #pragma mark SSIWarrantyPickerDelegate methods
 
-- (void)pickerDidChooseWarranty:(int)year month:(int)month day:(int)day
+- (void)pickerDidChooseWarranty:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
 {
     self.product[@"warrantyYear"] = @(year);
     self.product[@"warrantyMonth"] = @(month);
