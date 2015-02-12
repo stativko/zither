@@ -11,6 +11,9 @@
 
 //#define TESTMODE
 
+#pragma mark - KEYS
+extern NSString *const SSI_PARSE_API;
+
 enum {
 
     DATETYPE_EDITPRODUCT,

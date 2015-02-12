@@ -13,7 +13,6 @@
 #define BASEURL @"https://api.semantics3.com/test/v1"       // api url
 //#define APIKEY @"SEM3E892B8487C7EA8267E1B0C8CE8345157"      // api key
 //#define APIKEY @"SEM33906B6C37FC2A1AAE71EFE8AFB1536B1"      // api key
-#define APIKEY @"SEM34E7A133DBAF72F4F4F343C54BD0EF192"      // api key
 
 @implementation SSIApi
 
@@ -23,7 +22,7 @@
     dispatch_once(&onceToken, ^{
         _sharedClient = [[SSIApi alloc] initWithBaseURL:[NSURL URLWithString:BASEURL]];
         [_sharedClient setSecurityPolicy:[AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey]];
-        [_sharedClient.requestSerializer setValue:APIKEY forKey:@"api_key"];
+        [_sharedClient.requestSerializer setValue:SSI_PARSE_API forHTTPHeaderField:@"api_key"];
 //        [_sharedClient setDefaultHeader:@"api_key" value:APIKEY];
 
     });
@@ -68,7 +67,9 @@
     // constructing query
     NSDictionary *parameters = @{@"upc": code};
     NSString *query = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil] encoding:NSUTF8StringEncoding];
-    NSMutableURLRequest *request = [[[SSIApi sharedClient] requestSerializer] requestWithMethod:@"GET" URLString:@"products" parameters:@{@"q": query} error:nil];
+    NSString *urlString = [NSString stringWithFormat:@"%@/%@", BASEURL, @"products"];
+    NSMutableURLRequest *request = [[[SSIApi sharedClient] requestSerializer] requestWithMethod:@"GET" URLString:urlString parameters:@{@"q": query} error:nil];
+    
     AFHTTPRequestOperation *httpOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [httpOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
 

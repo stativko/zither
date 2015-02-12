@@ -9,5 +9,6 @@ pod 'ZBarSDK'
 pod 'Intercom'
 pod 'AFNetworking'
 pod 'SVProgressHUD'
+pod 'CocoaLumberjack'
 
 link_with 'zither', 'zither-dev'

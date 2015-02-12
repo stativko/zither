@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-CocoaLumberjack.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Intercom.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,57 +67,62 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>11D8EC4EBC101687D0B25CD4</key>
+		<key>4779A46AB5FC19684BB88E34</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>17E0CBF8E409409B6518F825</key>
+		<key>4960B1A4CF4E3286FDEC7497</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3940262A6FAF46EB978418A4</key>
+		<key>4CF696D32B86461D2105EBB5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3CB0BAB95851108B7B240828</key>
+		<key>4F4A853CC3388B275418E430</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>67D010C2432D11C54CAC9E22</key>
+		<key>7D5AF939B5E01553943BF79B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7F2A25DDB88E968E4394A091</key>
+		<key>7F5AD40FC5FE07A13781EC94</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8028C3B7870BD3AEA802F5B1</key>
+		<key>84D35CAF45B2FF54F2CDCF37</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AF1DD14166B2621528E26C2B</key>
+		<key>8567B9E688A29DAD39BB0E65</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B31F73A15633ABA93DC98A40</key>
+		<key>A57A411B03B34197EB4B172C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C138C9D904BEA3BD24D145D5</key>
+		<key>BC6AFA4DF9DF7B91F51E0D20</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D3B5C0ED00A031173891F999</key>
+		<key>DDECC30D8C30BEABA9BA8783</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EE54D0DDF1A5CD5FFBAA7343</key>
 		<dict>
 			<key>primary</key>
 			<true/>

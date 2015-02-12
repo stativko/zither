@@ -10,6 +10,8 @@
 
 #define keyShouldSkipIntro @"keyShouldSkipIntro"
 
+NSString *const SSI_PARSE_API = @"SEM34E7A133DBAF72F4F4F343C54BD0EF192";
+
 @implementation SSIUtils
 
 + (BOOL)shouldShowIntro

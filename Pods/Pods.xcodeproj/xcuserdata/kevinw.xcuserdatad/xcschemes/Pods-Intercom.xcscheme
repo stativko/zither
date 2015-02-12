@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7F2A25DDB88E968E4394A091"
+               BlueprintIdentifier = "84D35CAF45B2FF54F2CDCF37"
                BuildableName = "libPods-Intercom.a"
                BlueprintName = "Pods-Intercom"
                ReferencedContainer = "container:Pods.xcodeproj">
