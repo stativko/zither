@@ -53,6 +53,8 @@
         [newUser setEmail:self.tfEmail.text];
         [newUser setUsername:self.tfEmail.text];
         [newUser setPassword:self.tfPassword.text];
+        PFACL *userACL = [PFACL ACLWithUser:newUser];
+        [newUser setACL:userACL];
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
 
             if (error) {
