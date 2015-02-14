@@ -19,6 +19,7 @@
 @interface SSIEditProductViewController : SSIBaseViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) PFObject *product;
+@property (nonatomic, strong) PFObject *copiedProduct;
 @property (nonatomic) BOOL shouldAddProduct;
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;

@@ -15,10 +15,11 @@
     #import <Foundation/Foundation.h>
 #endif
 
+#import <DDLog.h>
+
 #import "AdditionsImport.h"
 #import <Parse/Parse.h>
 #import "AFNetworking.h"
 #import "SSIUtils.h"
 
 #import "SSIApi.h"
-#import <DDLog.h>

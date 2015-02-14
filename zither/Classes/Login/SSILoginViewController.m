@@ -69,14 +69,19 @@
 
 - (void)actionLogin
 {
+    self.tfEmail.text = [self.tfEmail.text lowercaseString];
     if ([self validateFields]) {
-
+        
         [SVProgressHUD showWithStatus:@"Logging in..."];
         [PFUser logInWithUsernameInBackground:self.tfEmail.text password:self.tfPassword.text block:^(PFUser *user, NSError *error) {
 
             if (error) {
 
                 [SVProgressHUD showErrorWithStatus:@"Error logging in"];
+                NSString *parseMessage = [[error userInfo] objectForKey:@"error"];
+                if (parseMessage) {
+                    [[[UIAlertView alloc] initWithTitle:@"Error logging in" message:parseMessage delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil] show];
+                }
             }
             else {
 

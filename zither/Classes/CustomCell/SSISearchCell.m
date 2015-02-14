@@ -14,6 +14,9 @@
 {
     self.backgroundColor = [UIColor whiteColor];
     [self.lblProductName setText:product[@"productName"]];
+    if (product[@"numShares"]) {
+        [self.numSharesLabel setText:[product[@"numShares"] stringValue]];
+    }
 
     UIImage *placeholderImage = [UIImage imageNamed:@"product_placeholder"];
 

@@ -30,107 +30,89 @@
     return _sharedClient;
 }
 
++ (void)searchVerifiedProductsWithContext:(SSIProductSearchResults *)context
+                               completion:(void (^)(NSString *error))completion {
+    completion(nil);
+}
 
-+ (void)getProductDetailFromUPC:(NSString *)code
-                        success:(void (^)(NSArray *products))success
-                        failure:(void (^)(NSString *error))failure
-{
-#ifdef TESTMODE
-    {
-        /* testing purpose */
-        NSString *responseString = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"response_upc" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil];
-
-        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:[responseString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
-
-        NSMutableArray *products = [NSMutableArray array];
-        for (NSDictionary *dict in responseDict[@"results"]) {
-
-            [products addObject:[self objectFromProductDict:dict]];
++ (void)searchUserProductsWithContext:(SSIProductSearchResults *)context
+                              completion:(void (^)(NSString *error))completion {
+    PFQuery *query = [PFQuery queryWithClassName:kUserProductClassName];
+    [query whereKey:@"barcode" equalTo:context.searchTerm];
+    [query orderByDescending:@"numShares"];
+    [query setLimit:5];
+//    [query selectKeys:@""] TODO select keys for privacy
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (objects) {
+            context.userProducts = objects;
         }
-
-        if ([products count] > 0) {
-
-            success(products);
+        if (error && [error.userInfo objectForKey:@"error"]) {
+            completion([error.userInfo objectForKey:@"error"]);
+        } else {
+            completion(nil);
         }
-        else {
+    }];
+}
 
-            failure(@"No products found");
-        }
-
-        return;
-    }
-#endif
-
-//    AFHTTPClient *client = [AFHTTPClient clientWithBaseURL:[NSURL URLWithString:BASEURL]];
-//    [client setDefaultHeader:@"api_key" value:APIKEY];
-
++ (void)searchSemanticsWithContext:(SSIProductSearchResults *)context
+                        completion:(void (^)(NSString *error))completion {
+    
     // constructing query
-    NSDictionary *parameters = @{@"upc": code};
+    NSDictionary *parameters = @{@"gtins": context.searchTerm};
     NSString *query = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil] encoding:NSUTF8StringEncoding];
     NSString *urlString = [NSString stringWithFormat:@"%@/%@", BASEURL, @"products"];
     NSMutableURLRequest *request = [[[SSIApi sharedClient] requestSerializer] requestWithMethod:@"GET" URLString:urlString parameters:@{@"q": query} error:nil];
     
     AFHTTPRequestOperation *httpOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [httpOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-
-        // return result
-//        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-//
-//        [[[UIAlertView alloc] initWithTitle:@"API Response" message:responseString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-
         NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
-
         NSMutableArray *products = [NSMutableArray array];
+        NSLog(@"results from semantic %@", responseDict);
         for (NSDictionary *dict in responseDict[@"results"]) {
-
-            [products addObject:[self objectFromProductDict:dict]];
+            PFObject *newProd = [self objectFromProductDict:dict];
+            newProd[@"barcode"] = context.searchTerm;
+            [products addObject:newProd];
         }
-
-        if ([products count] > 0) {
-
-            success(products);
-        }
-        else {
-
-            failure(@"No products found");
-        }
+        context.semanticsProducts = products;
+        completion(nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
-        failure(@"Error occurred");
+        completion(@"Error occurred");
     }];
-
+    
     [httpOperation start];
 }
 
++ (void)getProductDetailFromUPC:(NSString *)code
+                        success:(void (^)(SSIProductSearchResults *product))success
+                        failure:(void (^)(NSString *error))failure
+{
+    if (code.length ==0) {
+        failure(@"Could not read code.");
+    }
+    
+    SSIProductSearchResults *results = [[SSIProductSearchResults alloc] initWithSearchTerm:[code uppercaseString]];
+    [SSIApi searchUserProductsWithContext:results completion:^(NSString *error) {
+        if (error) {
+            // todo determine if retryable error
+            failure(error);
+        } else if ( results.verifiedProducts.count || results.userProducts.count) {
+            success(results);
+        } else {
+            [SSIApi searchSemanticsWithContext:results completion:^(NSString *error) {
+                if (error) {
+                    failure(error);
+                } else {
+                    success(results);
+                }
+            }];
+        }
+    }];
+}
+
 + (void)getProductDetailFromText:(NSString *)text
-                         success:(void (^)(NSArray *products))success
+                         success:(void (^)(SSIProductSearchResults *products))success
                          failure:(void (^)(NSString *error))failure
 {
-#ifdef TESTMODE
-    {
-        /* testing purpose */
-        NSString *responseString = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"response_text" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil];
-
-        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:[responseString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
-
-        NSMutableArray *products = [NSMutableArray array];
-        for (NSDictionary *dict in responseDict[@"results"]) {
-
-            [products addObject:[self objectFromProductDict:dict]];
-        }
-
-        if ([products count] > 0) {
-
-            success(products);
-        }
-        else {
-
-            failure(@"No products found");
-        }
-
-        return;
-    }
-#endif
 
 //    AFHTTPClient *client = [AFHTTPClient clientWithBaseURL:[NSURL URLWithString:BASEURL]];
 //    [client setDefaultHeader:@"api_key" value:APIKEY];
@@ -143,27 +125,15 @@
     AFHTTPRequestOperation *httpOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [httpOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
 
-        // return result
-//        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-//
-//        [[[UIAlertView alloc] initWithTitle:@"API Response" message:responseString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-
         NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
 
         NSMutableArray *products = [NSMutableArray array];
         for (NSDictionary *dict in responseDict[@"results"]) {
-
-            [products addObject:[self objectFromProductDict:dict]];
+            PFObject *newProd =[self objectFromProductDict:dict];
+            [products addObject:newProd];
         }
-
-        if ([products count] > 0) {
-
-            success(products);
-        }
-        else {
-
-            failure(@"No products found");
-        }
+        SSIProductSearchResults *context = [[SSIProductSearchResults alloc] initWithSearchTerm:text];
+        context.semanticsProducts = products;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 
         failure(@"Error occurred");
@@ -177,9 +147,13 @@
     NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
     NSString *api_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
-    PFObject *object = [PFObject objectWithClassName:kProductClassName];
-
-    object[@"productName"] = dict[@"name"];
+    PFObject *object = [PFObject objectWithClassName:kUserProductClassName];
+    if (dict[@"barcode"]) {
+        object[@"barcode"] = dict[@"barcode"];
+    }
+    if (dict[@"name"]) {
+        object[@"productName"] = dict[@"name"];
+    }
     object[@"purchasedOn"] = [NSDate date];
     object[@"warrantyYear"] = @1;
     object[@"api_response"] = api_response;
@@ -188,6 +162,9 @@
     if ([images count] > 0) {
 
         object[@"productImageUrl"] = [images firstObject];
+    }
+    if (dict[@"productImage"]) {
+        object[@"productImage"] = dict[@"productImage"];
     }
 
 /*

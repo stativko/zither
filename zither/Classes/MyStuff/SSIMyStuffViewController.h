@@ -17,5 +17,5 @@
 
 - (IBAction)actionAddProduct;
 - (void)navigateToProductDetail:(NSString *)product;
-
+@property (nonatomic, assign) BOOL forceRefresh;
 @end

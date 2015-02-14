@@ -145,6 +145,8 @@
 		26A9FDC31A8BF63100E87E53 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 26A9FD7B1A8BF63100E87E53 /* splash.png */; };
 		26AC18091A8D3CFF00FEFB49 /* UIActivityIndicatorView+KLI.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AC18081A8D3CFF00FEFB49 /* UIActivityIndicatorView+KLI.m */; };
 		26AC180A1A8D3CFF00FEFB49 /* UIActivityIndicatorView+KLI.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AC18081A8D3CFF00FEFB49 /* UIActivityIndicatorView+KLI.m */; };
+		26AC180D1A8E778100FEFB49 /* SSIProductSearchResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AC180C1A8E778100FEFB49 /* SSIProductSearchResults.m */; };
+		26AC180E1A8E778100FEFB49 /* SSIProductSearchResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AC180C1A8E778100FEFB49 /* SSIProductSearchResults.m */; };
 		A59CDC2D4C13D4FF5E3BC21C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F9FB293418673B1413F3CF /* libPods.a */; };
 		EBA0A55DE65D1E571746477D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F9FB293418673B1413F3CF /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -253,6 +255,8 @@
 		26A9FD7B1A8BF63100E87E53 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		26AC18071A8D3CFE00FEFB49 /* UIActivityIndicatorView+KLI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIActivityIndicatorView+KLI.h"; path = "Additions/UIActivityIndicatorView+KLI.h"; sourceTree = "<group>"; };
 		26AC18081A8D3CFF00FEFB49 /* UIActivityIndicatorView+KLI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIActivityIndicatorView+KLI.m"; path = "Additions/UIActivityIndicatorView+KLI.m"; sourceTree = "<group>"; };
+		26AC180B1A8E778100FEFB49 /* SSIProductSearchResults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSIProductSearchResults.h; sourceTree = "<group>"; };
+		26AC180C1A8E778100FEFB49 /* SSIProductSearchResults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSIProductSearchResults.m; sourceTree = "<group>"; };
 		BCAF1BE8502091C9901CD7A3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F3F9FB293418673B1413F3CF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -373,6 +377,8 @@
 				26A9FCD51A8BE6D800E87E53 /* SSIAddProductViewController.m */,
 				26A9FCD61A8BE6D800E87E53 /* SSIScanViewController.h */,
 				26A9FCD71A8BE6D800E87E53 /* SSIScanViewController.m */,
+				26AC180B1A8E778100FEFB49 /* SSIProductSearchResults.h */,
+				26AC180C1A8E778100FEFB49 /* SSIProductSearchResults.m */,
 				26A9FCD81A8BE6D800E87E53 /* SSISearchViewController.h */,
 				26A9FCD91A8BE6D800E87E53 /* SSISearchViewController.m */,
 			);
@@ -858,6 +864,7 @@
 				26A9FD201A8BE6D800E87E53 /* SSIEditProductViewController.m in Sources */,
 				26A9FD261A8BE6D800E87E53 /* SSIIntroView.m in Sources */,
 				26A9FD1C1A8BE6D800E87E53 /* SSIDatePicker.m in Sources */,
+				26AC180D1A8E778100FEFB49 /* SSIProductSearchResults.m in Sources */,
 				26A9FD181A8BE6D800E87E53 /* SSIProductCell.m in Sources */,
 				26A9FD2C1A8BE6D800E87E53 /* SSISignUpViewController.m in Sources */,
 				26A9FD3A1A8BE6D800E87E53 /* SSIUtils.m in Sources */,
@@ -890,6 +897,7 @@
 				26A9FD211A8BE6D800E87E53 /* SSIEditProductViewController.m in Sources */,
 				26A9FD271A8BE6D800E87E53 /* SSIIntroView.m in Sources */,
 				26A9FD1D1A8BE6D800E87E53 /* SSIDatePicker.m in Sources */,
+				26AC180E1A8E778100FEFB49 /* SSIProductSearchResults.m in Sources */,
 				26A9FD191A8BE6D800E87E53 /* SSIProductCell.m in Sources */,
 				26A9FD2D1A8BE6D800E87E53 /* SSISignUpViewController.m in Sources */,
 				26A9FD3B1A8BE6D800E87E53 /* SSIUtils.m in Sources */,

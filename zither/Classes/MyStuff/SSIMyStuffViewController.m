@@ -20,8 +20,7 @@
 @property (nonatomic, strong) NSMutableArray *products;
 @property (nonatomic, strong) NSMutableArray *filteredProducts;
 
-@property (nonatomic, strong) NSString *scannedCode;
-@property (nonatomic, strong) NSArray *searchResults;
+@property (nonatomic, strong) SSIProductSearchResults *searchResults;
 
 @property (nonatomic, strong) PFObject *productToEdit;
 
@@ -94,40 +93,33 @@
     [self.lblNoSearchResults setHidden:YES];
     [self.searchBar setUserInteractionEnabled:NO];
 
-//    [SVProgressHUD showWithStatus:@"Loading Products..."];
-    PFQuery *query = [PFQuery queryWithClassName:@"Product"];
+    PFQuery *query = [PFQuery queryWithClassName:kUserProductClassName];
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [query whereKey:@"owner" equalTo:[PFUser currentUser]];
+    __block NSUInteger iteration = 0;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-
         if (error == nil) {
-
-            [SVProgressHUD dismiss];
             self.products = [NSMutableArray arrayWithArray:objects];
             [self.products sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-
                 if ([SSIUtils remainingWarrantyDaysFromProduct:obj1] < [SSIUtils remainingWarrantyDaysFromProduct:obj2]) {
-
                     return NSOrderedAscending;
-                }
-                else {
-
+                } else {
                     return NSOrderedDescending;
                 }
             }];
-
             [self filterProducts:self.searchBar.text];
 
-            if ([SSIAppDelegate sharedDelegate].expiringProductId) {
+            if (iteration==1 && [SSIAppDelegate sharedDelegate].expiringProductId) {
 
                 [self navigateToProductDetail:[SSIAppDelegate sharedDelegate].expiringProductId];
             }
             [self.lblNoItems setHidden:([self.products count] > 0)];
             [self.searchBar setUserInteractionEnabled:([self.products count] > 0)];
+            if (iteration==1) {
+                self.forceRefresh = NO;
+            }
         }
-        else {
-
-//            [SVProgressHUD showErrorWithStatus:@"Error in loading products..."];
-        }
+        iteration ++;
     }];
 }
 
@@ -143,17 +135,17 @@
 {
     [self.lblNoSearchResults setHidden:YES];
 
-    [self.filteredProducts removeAllObjects];
-    self.filteredProducts = [NSMutableArray array];
-
     if (searchString.length <= 0) {
-
+        if (self.filteredProducts.count == self.products.count && !self.forceRefresh) {
+            return; // no additions/subtractions from last refresh, just return
+        }
+        
+        self.filteredProducts = [NSMutableArray array];
         [self.filteredProducts addObjectsFromArray:self.products];
     }
     else {
-
+        self.filteredProducts = [NSMutableArray array];
         for (PFObject *product in self.products) {
-
             NSString *name = product[@"productName"];
             if ([[name lowercaseString] rangeOfString:[searchString lowercaseString]].length > 0) {
 
@@ -201,33 +193,30 @@
     }
 }
 
-- (void)setScannedCode:(NSString *)scannedCode
-{
-    _scannedCode = scannedCode;
 
-    if ([scannedCode length] > 0) {
-
-        [self loadProductsWithCode:scannedCode];
-    }
-}
 
 #pragma mark -
 #pragma mark api calling methods
 - (void)loadProductsWithCode:(NSString *)scannedCode
 {
     [SVProgressHUD showWithStatus:@"Loading Product Details..."];
-    [SSIApi getProductDetailFromUPC:scannedCode success:^(NSArray *products) {
+    [SSIApi getProductDetailFromUPC:scannedCode success:^(SSIProductSearchResults *products) {
 
         [SVProgressHUD dismiss];
+        if (products.cumulativeProducts.count) {
+            [self didFinishLoadingProducts:products];
+        } else {
+            NSDictionary *productToEdit = @{@"barcode" : scannedCode ? scannedCode : @"missing"};
+            self.productToEdit = [SSIApi objectFromProductDict:productToEdit];
+            [self performSegueWithIdentifier:@"addProduct" sender:self];
 
-        [self didFinishLoadingProducts:products];
+        }
     } failure:^(NSString *error) {
-
         [SVProgressHUD showErrorWithStatus:error];
     }];
 }
 
-- (void)didFinishLoadingProducts:(NSArray *)products
+- (void)didFinishLoadingProducts:(SSIProductSearchResults *)products
 {
     self.searchResults = products;
     [self performSegueWithIdentifier:@"showSearch" sender:self];
@@ -319,7 +308,7 @@
 {
     [viewController dismissViewControllerAnimated:YES completion:^{
 
-        self.scannedCode = barcode;
+        [self loadProductsWithCode:barcode];
     }];
 }
 

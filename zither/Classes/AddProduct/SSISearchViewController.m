@@ -13,6 +13,7 @@
 @interface SSISearchViewController ()
 
 @property (nonatomic, strong) PFObject *productToEdit;
+@property (nonatomic, strong) PFObject *copiedProduct;
 
 @end
 
@@ -41,6 +42,7 @@
 {
     [super viewWillAppear:animated];
     self.productToEdit = nil;
+    self.copiedProduct = nil;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -49,6 +51,7 @@
 
         SSIEditProductViewController *editController = segue.destinationViewController;
         editController.product = self.productToEdit;
+        editController.copiedProduct = self.copiedProduct;
         editController.shouldAddProduct = YES;
         self.navigationItem.title = @"Results";
     }
@@ -66,21 +69,15 @@
     [self.searchBar setText:searchString];
 
     [SVProgressHUD showWithStatus:@"Loading Product Details..."];
-    [SSIApi getProductDetailFromText:searchString success:^(NSArray *products) {
+    [SSIApi getProductDetailFromText:searchString success:^(SSIProductSearchResults *products) {
 
         [SVProgressHUD dismiss];
-
-        [self didFinishLoadingProducts:products];
+        self.searchResults = products;
+        [self.tableView reloadData];
     } failure:^(NSString *error) {
 
         [SVProgressHUD showErrorWithStatus:error];
     }];
-}
-
-- (void)didFinishLoadingProducts:(NSArray *)products
-{
-    self.searchResults = products;
-    [self.tableView reloadData];
 }
 
 #pragma mark -
@@ -88,7 +85,11 @@
 
 - (void)actionAddManually
 {
-    self.productToEdit = [SSIApi objectFromProductDict:@{@"name": (self.searchBar.text == nil) ? @"" : self.searchBar.text}];
+    NSMutableDictionary *dict = [@{@"name": (self.searchBar.text == nil) ? @"" : self.searchBar.text} mutableCopy];
+//    if (self.searchResults) {
+//        [dict setObject:self.searchResults.searchTerm forKey:@"barcode"];
+//    }
+    self.productToEdit = [SSIApi objectFromProductDict:dict];
     [self performSegueWithIdentifier:@"editProduct" sender:self];
 }
 
@@ -96,21 +97,43 @@
 #pragma mark UITableViewDataSource, UITableViewDelegate methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.searchResults count];
+    
+    return [self.searchResults cumulativeProducts].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifier = @"searchCell";
-    SSISearchCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    [cell setProduct:self.searchResults[indexPath.row]];
+    SSISearchCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    [cell setProduct:self.searchResults.cumulativeProducts[indexPath.row]];
 
     return cell;
 }
 
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.productToEdit = self.searchResults[indexPath.row];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    PFObject *copyProduct = self.searchResults.cumulativeProducts[indexPath.row];
+    NSDictionary *productToEdit =
+    @{@"barcode" : copyProduct[@"barcode"] ? copyProduct[@"barcode"] : @"missing"};
+    self.productToEdit = [SSIApi objectFromProductDict:productToEdit];
+
+    if (![self.searchResults isScannedObject]) {
+        self.copiedProduct = copyProduct;
+        self.productToEdit[@"copiedFrom"] = self.copiedProduct;
+    }
+
+    if (copyProduct[@"productImage"]) {
+        self.productToEdit[@"productImage"] = copyProduct[@"productImage"];
+    }
+    if (copyProduct[@"productImageUrl"]) {
+        self.productToEdit[@"productImageUrl"] = copyProduct[@"productImageUrl"];
+    }
+    if (copyProduct[@"productName"]) {
+        self.productToEdit[@"productName"] = copyProduct[@"productName"];
+    }
     [self performSegueWithIdentifier:@"editProduct" sender:self];
 }
 

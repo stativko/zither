@@ -10,6 +10,14 @@
 #import "SSIDatePicker.h"
 
 //#define TESTMODE
+const int ddLogLevel = LOG_LEVEL_ALL;
+
+#define SOURCE_SEMENTIC @"sementic"
+#define SOURCE_VERIFIED @"verifiedUser"
+#define SOURCE_USER_PRODUCT @"userProduct"
+
+#define kUserProductClassName @"Product"
+#define kVerifiedProductClassName @"VerifiedProduct"
 
 #pragma mark - KEYS
 extern NSString *const SSI_PARSE_API;

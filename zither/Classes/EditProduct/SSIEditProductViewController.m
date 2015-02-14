@@ -13,6 +13,7 @@
 #import "SSINotificationManager.h"
 
 #import <Intercom/Intercom.h>
+#import "SSIMyStuffViewController.h"
 
 enum {
 
@@ -321,7 +322,11 @@ enum {
     // NOTE: This is also were we should verify that changes were made.
 
     PFBooleanResultBlock saveFinish = ^(BOOL succeeded, NSError *error) {
-
+        if (self.copiedProduct && ![[self.copiedProduct objectForKey:@"owner"] isEqualToString:[PFUser currentUser].objectId]) {
+            [self.copiedProduct incrementKey:@"numShares"];
+            [self.copiedProduct saveInBackground]; // save the increment on the object
+        }
+        
         [SVProgressHUD dismiss];
 
         if (succeeded && error == nil) {
@@ -348,8 +353,10 @@ enum {
         for (UIViewController *viewController in [self.navigationController viewControllers]) {
 
             if ([NSStringFromClass([viewController class]) isEqualToString:@"SSIMyStuffViewController"]) {
-
+                SSIMyStuffViewController *mystuff = (SSIMyStuffViewController*)viewController;//BAAAAD
+                mystuff.forceRefresh = YES;
                 [self.navigationController popToViewController:viewController animated:YES];
+                
                 break;
             }
         }
@@ -369,7 +376,7 @@ enum {
     };
 
     if (self.productReceipt_New) {
-        PFFile *productReceipt = [PFFile fileWithData:UIImagePNGRepresentation(self.productReceipt_New)];
+        PFFile *productReceipt = [PFFile fileWithName:@"receipt.jpg" data:UIImageJPEGRepresentation(self.productReceipt_New, .5)];
         [productReceipt saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
 
             if (succeeded) {
@@ -387,14 +394,12 @@ enum {
 
     if (self.productSerialNumber_New) {
 
-        PFFile *productSerialNumber = [PFFile fileWithData:UIImagePNGRepresentation(self.productSerialNumber_New)];
+        PFFile *productSerialNumber = [PFFile fileWithName:@"serial.jpg" data:UIImageJPEGRepresentation(self.productSerialNumber_New, .5)];
         [productSerialNumber saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-
             if (succeeded) {
 
                 self.product[@"productSerialNumber"] = productSerialNumber;
             }
-
             imageUploadFinish();
         }];
     }
@@ -404,8 +409,9 @@ enum {
     }
 
     if (self.productImage_New) {
+        PFFile *productImage = [PFFile fileWithName:@"product.jpg" data:UIImageJPEGRepresentation(self.productImage_New, .8)];
 
-        PFFile *productImage = [PFFile fileWithData:UIImagePNGRepresentation(self.productImage_New)];
+//        PFFile *productImage = [PFFile fileWithData:UIImagePNGRepresentation(self.productImage_New)];
         [productImage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
 
             if (succeeded) {

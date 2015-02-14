@@ -21,6 +21,10 @@
 
     [self.lblNavTitle setText:self.title];
 
+    self.webView.scalesPageToFit = YES;
+}
+
+-(void)viewWillAppear:(BOOL)animated {
     [self.webView loadRequest:[NSURLRequest requestWithURL:self.url]];
 }
 

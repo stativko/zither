@@ -6,18 +6,19 @@
 //  Copyright (c) 2014 Reilly. All rights reserved.
 //
 
-#define kProductClassName @"Product"
+#import "SSIProductSearchResults.h"
+
 
 @interface SSIApi : AFHTTPSessionManager
 
 // look up product with UPC using semantics api
 + (void)getProductDetailFromUPC:(NSString *)code
-                        success:(void (^)(NSArray *products))success
+                        success:(void (^)(SSIProductSearchResults *product))success
                         failure:(void (^)(NSString *error))failure;
 
 // look up product with Text using semantics api
 + (void)getProductDetailFromText:(NSString *)text
-                         success:(void (^)(NSArray *products))success
+                         success:(void (^)(SSIProductSearchResults *products))success
                          failure:(void (^)(NSString *error))failure;
 
 + (PFObject *)objectFromProductDict:(NSDictionary *)dict;

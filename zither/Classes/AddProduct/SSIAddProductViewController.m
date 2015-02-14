@@ -13,7 +13,7 @@
 @interface SSIAddProductViewController () <SSIScanViewControllerDelegate>
 
 @property (nonatomic, strong) NSString *scannedCode;
-@property (nonatomic, strong) NSArray *searchResults;
+@property (nonatomic, strong) SSIProductSearchResults *searchResults;
 
 @end
 
@@ -68,18 +68,18 @@
 - (void)loadProductsWithCode:(NSString *)scannedCode
 {
     [SVProgressHUD showWithStatus:@"Loading Product Details..."];
-    [SSIApi getProductDetailFromUPC:scannedCode success:^(NSArray *products) {
+    [SSIApi getProductDetailFromUPC:scannedCode success:^(SSIProductSearchResults *result) {
 
         [SVProgressHUD dismiss];
 
-        [self didFinishLoadingProducts:products];
+        [self didFinishLoadingProducts:result];
     } failure:^(NSString *error) {
 
         [SVProgressHUD showErrorWithStatus:error];
     }];
 }
 
-- (void)didFinishLoadingProducts:(NSArray *)products
+- (void)didFinishLoadingProducts:(SSIProductSearchResults *)products
 {
     self.searchResults = products;
     [self performSegueWithIdentifier:@"showSearch" sender:self];

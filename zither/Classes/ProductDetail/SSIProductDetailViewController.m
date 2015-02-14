@@ -116,7 +116,7 @@
 #pragma mark UITableViewDataSource, UITableViewDelegate methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 5;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -124,17 +124,15 @@
     if (indexPath.row == 0) {  // note cell
 
         NSString *description = self.product[@"note"];
-        CGSize size = [description sizeWithFont:[UIFont fontWithName:@"Avenir-Roman" size:14.0f] constrainedToSize:CGSizeMake(280.0, 5000.0)];
-//        CGRect boundingRect = [description boundingRectWithSize:CGSizeMake(280.0, 5000.0) options:0 attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir-Roman" size:14.0f]} context:NULL];
+//        CGSize size = [description sizeWithFont:[UIFont fontWithName:@"Avenir-Roman" size:14.0f] constrainedToSize:CGSizeMake(280.0, 5000.0)];
+        CGRect boundingRect = [description boundingRectWithSize:CGSizeMake(280.0, 5000.0) options:0 attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir-Roman" size:14.0f]} context:NULL];
 
-        return size.height + 26.0;
+        return boundingRect.size.height + 26.0;
     }
     else if (indexPath.row == 1) {   // receipt
 
         PFFile *productReceipt = self.product[@"productReceipt"];
-        NSString *productReceiptUrl = self.product[@"productReceiptUrl"];
-
-        if (productReceipt.url || productReceiptUrl) {
+        if (productReceipt) {
 
             return 44.0;
         }
@@ -142,8 +140,20 @@
 
             return 0.0;
         }
+    } else if (indexPath.row == 2) {   // serial
+        
+        PFFile *productSerial = self.product[@"productSerialNumber"];
+        
+        if (productSerial) {
+            
+            return 44.0;
+        }
+        else {
+            
+            return 0.0;
+        }
     }
-    else if (indexPath.row == 3) {  // customer service.
+    else if (indexPath.row == 4) {  // customer service.
 
         BOOL hasPurchased = ([self.product[@"purchasedFrom"] length] > 0);
         return (hasPurchased == YES) ? 44.0 : 0;
@@ -159,7 +169,7 @@
         NSString *identifier = @"detailCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 
-        NSArray *titles = @[@"Receipt", @"Find Manual", @"Customer Service"];
+        NSArray *titles = @[@"Receipt", @"Serial Number", @"Find Manual", @"Customer Service"];
 
         UILabel *lblTitle = (UILabel *)[cell viewWithTag:100];
         [lblTitle setText:titles[indexPath.row - 1]];
@@ -172,18 +182,25 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     // receipt
     if (indexPath.row == 1) {
-
         SSIPreviewImageViewController *previewImageController = [self.storyboard instantiateViewControllerWithIdentifier:@"previewImageScreen"];
         PFFile *productReceipt = self.product[@"productReceipt"];
-        NSString *productReceiptUrl = self.product[@"productReceiptUrl"];
-        previewImageController.imageUrl = (productReceipt.url == nil) ? productReceiptUrl : productReceipt.url;
+        previewImageController.imageUrl =  productReceipt.url;
         previewImageController.title = @"Product Receipt";
         [self.navigationController pushViewController:previewImageController animated:YES];
     }
+    if (indexPath.row == 2) {
+        
+        SSIPreviewImageViewController *previewImageController = [self.storyboard instantiateViewControllerWithIdentifier:@"previewImageScreen"];
+        PFFile *productReceipt = self.product[@"productSerialNumber"];
+        previewImageController.imageUrl = productReceipt.url;
+        previewImageController.title = @"Serial Number";
+        [self.navigationController pushViewController:previewImageController animated:YES];
+    }
     // find manual
-    else if (indexPath.row == 2) {
+    else if (indexPath.row == 3) {
 
         SSIPreviewLinkViewController *previewLinkController = [self.storyboard instantiateViewControllerWithIdentifier:@"previewLinkScreen"];
         previewLinkController.url = [SSIUtils findManualLinkForProduct:self.product];
@@ -191,7 +208,7 @@
         [self.navigationController pushViewController:previewLinkController animated:YES];
     }
     // customer svc
-    else if (indexPath.row == 3) {
+    else if (indexPath.row == 4) {
 
         SSIPreviewLinkViewController *previewLinkController = [self.storyboard instantiateViewControllerWithIdentifier:@"previewLinkScreen"];
         previewLinkController.url = [SSIUtils customerServiceLinkForProduct:self.product];

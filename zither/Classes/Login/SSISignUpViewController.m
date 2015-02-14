@@ -44,6 +44,8 @@
 
 - (void)actionCreateAccount
 {
+    self.tfEmail.text = [self.tfEmail.text lowercaseString];
+
     if ([self validateFields]) {
 
         [SVProgressHUD showWithStatus:@"Signing up..."];
@@ -56,6 +58,10 @@
             if (error) {
 
                 [SVProgressHUD showErrorWithStatus:@"Error signing up"];
+                NSString *parseMessage = [[error userInfo] objectForKey:@"error"];
+                if (parseMessage) {
+                    [[[UIAlertView alloc] initWithTitle:@"Error signing up" message:parseMessage delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil] show];
+                }
             }
             else {
                 // See note in LoginViewController.  Inside my wrapper, it's

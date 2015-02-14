@@ -10,7 +10,7 @@
 
 @interface SSISearchViewController : SSIBaseViewController <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) NSArray *searchResults;
+@property (nonatomic, strong) SSIProductSearchResults *searchResults;
 @property (nonatomic, strong) NSString *searchString;
 
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;

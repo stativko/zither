@@ -12,6 +12,7 @@
 
 @property (nonatomic, weak) IBOutlet UIImageView *productImageView;
 @property (nonatomic, weak) IBOutlet UILabel *lblProductName;
+@property (weak, nonatomic) IBOutlet UILabel *numSharesLabel;
 
 - (void)setProduct:(PFObject *)product;
 
