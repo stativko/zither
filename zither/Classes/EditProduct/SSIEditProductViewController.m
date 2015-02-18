@@ -600,7 +600,7 @@ enum {
 #pragma mark -
 #pragma mark SSIDatePickerDelegate methods
 
-- (void)picker:(int)tag didChooseDate:(NSDate *)date
+- (void)picker:(NSInteger)tag didChooseDate:(NSDate *)date
 {
     self.purchasedOnCell.textField.text = [SSIUtils stringFromDate:date type:DATETYPE_EDITPRODUCT];
     self.isWarrantyEdit = YES;

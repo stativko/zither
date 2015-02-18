@@ -12,7 +12,7 @@
 #import "SSIPreviewLinkViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
-@interface SSIProductDetailViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface SSIProductDetailViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SSIPreviewDelegate>
 
 @property (nonatomic, strong) UITableViewCell *descriptionCell;
 
@@ -27,6 +27,10 @@
 
     [self applyProductToFields];
 //    [self.product fetchIfNeededInBackground];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.tableView reloadData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -172,7 +176,11 @@
         NSArray *titles = @[@"Receipt", @"Serial Number", @"Find Manual", @"Customer Service"];
 
         UILabel *lblTitle = (UILabel *)[cell viewWithTag:100];
-        [lblTitle setText:titles[indexPath.row - 1]];
+        if (indexPath.row == 3 && ([self.product objectForKey:@"manual"] || [self.product objectForKey:@"manual_url"])) {
+            [lblTitle setText:@"Manual"];
+        } else {
+            [lblTitle setText:titles[indexPath.row - 1]];
+        }
 
         return cell;
     }
@@ -204,7 +212,19 @@
 
         SSIPreviewLinkViewController *previewLinkController = [self.storyboard instantiateViewControllerWithIdentifier:@"previewLinkScreen"];
         previewLinkController.url = [SSIUtils findManualLinkForProduct:self.product];
-        previewLinkController.title = @"Find Manual";
+
+        previewLinkController.title = @"Manual";
+        previewLinkController.productId = self.product.objectId;
+        previewLinkController.delegate = self;
+        previewLinkController.userInfo = @{@"type" : @"manual"};
+        if ([self.product objectForKey:@"manual"]) {
+            previewLinkController.fileToLoad =[self.product objectForKey:@"manual"];
+        } else if ([self.product objectForKey:@"manual_url"]) {
+            NSURL *url = [NSURL URLWithString:[self.product objectForKey:@"manual_url"]];
+            previewLinkController.savedUrl = url;
+        } else {
+            previewLinkController.title = @"Find Manual";
+        }
         [self.navigationController pushViewController:previewLinkController animated:YES];
     }
     // customer svc
@@ -213,6 +233,15 @@
         SSIPreviewLinkViewController *previewLinkController = [self.storyboard instantiateViewControllerWithIdentifier:@"previewLinkScreen"];
         previewLinkController.url = [SSIUtils customerServiceLinkForProduct:self.product];
         previewLinkController.title = @"Customer Service";
+        previewLinkController.productId = self.product.objectId;
+        previewLinkController.delegate = self;
+        previewLinkController.userInfo = @{@"type" : @"customerService"};
+        if ([self.product objectForKey:@"customerService"]) {
+            previewLinkController.fileToLoad = [self.product objectForKey:@"customerService"];
+        } else if ([self.product objectForKey:@"customerService_url"]) {
+            NSURL *url = [NSURL URLWithString:[self.product objectForKey:@"customerService_url"]];
+           previewLinkController.savedUrl = url;
+        }
         [self.navigationController pushViewController:previewLinkController animated:YES];
     }
 }
@@ -279,6 +308,32 @@
     }];
 
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)previewController:(SSIPreviewLinkViewController*) preview didSaveFile:(PFFile*)file withURL:(NSURL *)webUrl{
+    if (file) {
+        NSString *previewType = preview.userInfo[@"type"];
+        //    PFFile *parseFile = [PFFile fileWithName:name data:file];
+        [self.product setObject:file forKey:previewType];
+        [self.product saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            DDLogDebug(@"Received Error %@",error);
+        }];
+    }
+}
+
+- (void)previewControllerDidClearLink:(SSIPreviewLinkViewController*) preview {
+    NSString *previewType = preview.userInfo[@"type"];
+    NSString *urlCol = [previewType stringByAppendingString:@"_url"];
+
+    [self.product removeObjectForKey:previewType];
+    [self.product removeObjectForKey:urlCol];
+    [self.product saveInBackground];
+}
+- (void)previewController:(SSIPreviewLinkViewController *)preview didSaveLink:(NSURL *)link {
+    NSString *previewType = preview.userInfo[@"type"];
+    NSString *colName = [previewType stringByAppendingString:@"_url"];
+    [self.product setObject:[link absoluteString] forKey:colName];
+    [self.product saveInBackground];
 }
 
 @end

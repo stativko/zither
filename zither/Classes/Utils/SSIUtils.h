@@ -10,7 +10,6 @@
 #import "SSIDatePicker.h"
 
 //#define TESTMODE
-const int ddLogLevel = LOG_LEVEL_ALL;
 
 #define SOURCE_SEMENTIC @"sementic"
 #define SOURCE_VERIFIED @"verifiedUser"
@@ -21,6 +20,7 @@ const int ddLogLevel = LOG_LEVEL_ALL;
 
 #pragma mark - KEYS
 extern NSString *const SSI_PARSE_API;
+static const int ddLogLevel = LOG_LEVEL_ALL;
 
 enum {
 

@@ -10,8 +10,11 @@
 
 #import "SSIIPGateway.h"
 #import "SSIMyStuffViewController.h"
-
+#import "NotificationPermissionHandler.h"
+#import <Crashlytics/Crashlytics.h>
 #import <Intercom/Intercom.h>
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
 
 @implementation SSIAppDelegate
 
@@ -23,6 +26,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self configureAppearance];
+    [DDLog addLogger:[DDASLLogger sharedInstance]];
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    DDLogDebug(@"Showing Debug");
+    DDLogInfo(@"Showing Info");
+    DDLogError(@"Showing Error");
+    
+    [Crashlytics startWithAPIKey:@"a8612eae02d0a75c907bb68c09ea8a6e62f2a18e"];
+    [NotificationPermissionHandler checkPermissions];
     
     // Start the Intercom session.  Normally, check if we're started, but
     // since we just finished launching, it's a safe assumption.  This also
@@ -103,4 +114,32 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
 }
 
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    // Store the deviceToken in the current Installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    PFUser *signedInUser = [PFUser currentUser];
+    
+    if (signedInUser) {
+        [currentInstallation setObject:signedInUser forKey:@"user"];
+    }
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    
+    [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                DDLogDebug(@"Current Installation save error: %@", error);
+            }
+        });
+    }];
+}
+
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+#if TARGET_IPHONE_SIMULATOR
+#else
+    NSString *errMsg = [NSString stringWithFormat:@"We noticed we can't send you push notifications, you can enable in your device Settings -> Push Notification -> jswipe. Error: %@", [error localizedDescription]];
+    [[[UIAlertView alloc] initWithTitle:@"Push Notifications" message:errMsg delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+#endif
+}
 @end

@@ -13,7 +13,7 @@
 + (SSIDatePicker *)viewWithTitle:(NSString *)title
                    defaultValue:(id)value
                        delegate:(id<SSIDatePickerDelegate>)delegate
-                            tag:(int)tag
+                            tag:(NSInteger)tag
 {
     SSIDatePicker *pickerView = (SSIDatePicker *)[[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil] objectAtIndex:0];
     pickerView.title = title;

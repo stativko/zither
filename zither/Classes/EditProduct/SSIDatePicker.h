@@ -8,7 +8,7 @@
 
 @protocol SSIDatePickerDelegate
 
-- (void)picker:(int)tag didChooseDate:(NSDate *)date;
+- (void)picker:(NSInteger)tag didChooseDate:(NSDate *)date;
 
 @end
 
@@ -25,7 +25,7 @@
 + (SSIDatePicker *)viewWithTitle:(NSString *)title
                    defaultValue:(id)value
                        delegate:(id<SSIDatePickerDelegate>)delegate
-                            tag:(int)tag;
+                            tag:(NSInteger)tag;
 
 - (void)show;
 - (void)dismiss;

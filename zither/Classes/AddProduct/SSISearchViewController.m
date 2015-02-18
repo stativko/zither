@@ -134,6 +134,18 @@
     if (copyProduct[@"productName"]) {
         self.productToEdit[@"productName"] = copyProduct[@"productName"];
     }
+    if (copyProduct[@"manual"]) {
+        self.productToEdit[@"manual"] = copyProduct[@"manual"];
+    }
+    if (copyProduct[@"manual_url"]) {
+        self.productToEdit[@"manual_url"] = copyProduct[@"manual_url"];
+    }
+    if (copyProduct[@"customerService"]) {
+        self.productToEdit[@"customerService"] = copyProduct[@"customerService"];
+    }
+    if (copyProduct[@"customerService_url"]) {
+        self.productToEdit[@"customerService_url"] = copyProduct[@"customerService_url"];
+    }
     [self performSegueWithIdentifier:@"editProduct" sender:self];
 }
 

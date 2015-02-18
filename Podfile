@@ -10,5 +10,6 @@ pod 'Intercom'
 pod 'AFNetworking'
 pod 'SVProgressHUD'
 pod 'CocoaLumberjack'
+pod 'Reader', :git => 'https://github.com/vfr/Reader.git'
 
 link_with 'zither', 'zither-dev'

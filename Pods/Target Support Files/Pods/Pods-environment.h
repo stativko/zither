@@ -108,6 +108,12 @@
 #define COCOAPODS_VERSION_MINOR_ReactiveCocoa_no_arc 2
 #define COCOAPODS_VERSION_PATCH_ReactiveCocoa_no_arc 4
 
+// Reader
+#define COCOAPODS_POD_AVAILABLE_Reader
+#define COCOAPODS_VERSION_MAJOR_Reader 2
+#define COCOAPODS_VERSION_MINOR_Reader 8
+#define COCOAPODS_VERSION_PATCH_Reader 5
+
 // SVProgressHUD
 #define COCOAPODS_POD_AVAILABLE_SVProgressHUD
 #define COCOAPODS_VERSION_MAJOR_SVProgressHUD 1
