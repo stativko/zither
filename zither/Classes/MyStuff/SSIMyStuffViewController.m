@@ -128,7 +128,6 @@
     _products = products;
 
     [[SSINotificationManager sharedManager] setProducts:products];
-    [[SSINotificationManager sharedManager] registerLocalNotifications];
 }
 
 - (void)filterProducts:(NSString *)searchString

@@ -11,5 +11,6 @@ pod 'AFNetworking'
 pod 'SVProgressHUD'
 pod 'CocoaLumberjack'
 pod 'Reader', :git => 'https://github.com/vfr/Reader.git'
+#pod 'FormatterKit'
 
 link_with 'zither', 'zither-dev'

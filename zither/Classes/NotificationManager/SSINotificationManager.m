@@ -72,12 +72,12 @@ static SSINotificationManager *_notificationManager = nil;
     for (PFObject *product in self.products) {
 
         NSDate *expirationDate = [SSIUtils expireDateFromProduct:product];
-        NSDate *purchasedDate = product[@"purchasedOn"];
+//        NSDate *purchasedDate = product[@"purchasedOn"];
 
-        double allTime = [expirationDate timeIntervalSinceDate:purchasedDate];
-        double currentTime = [expirationDate timeIntervalSinceNow];
+        double secondsTillExpire = [expirationDate timeIntervalSinceNow];
 
-        if (currentTime / allTime < 0.3f) {
+        if (secondsTillExpire < 60*60*24*30 && secondsTillExpire > 0) {
+            DDLogDebug(@"Registering local notification for product: %@", product);
 
             [self registerLocalNotificationForProduct:product];
             break;
@@ -102,7 +102,7 @@ static SSINotificationManager *_notificationManager = nil;
             break;
         }
 
-        dateComponents.day ++;
+        dateComponents.second ++;
     }
 
     localNotification.fireDate = date;
@@ -110,7 +110,7 @@ static SSINotificationManager *_notificationManager = nil;
     NSString *productName = product[@"productName"];
     if ([productName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length == 0) {
 
-        productName = @"product";
+        productName = @"unnamed product";
     }
 
     NSString *alertString = [NSString stringWithFormat:@"How is your %@ working? Warranty expiring %@!", productName, [SSIUtils stringFromDate:[SSIUtils expireDateFromProduct:product] type:DATETYPE_PRODUCTDETAIL_PURCHASEDON]];

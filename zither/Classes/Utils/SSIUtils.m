@@ -221,7 +221,7 @@ NSString *const SSI_PARSE_API = @"SEM34E7A133DBAF72F4F4F343C54BD0EF192";
 + (NSURL *)findManualLinkForProduct:(PFObject *)product
 {
 //    NSString *query = [NSString stringWithFormat:@"%@+manual", product[@"productName"]];
-    NSString *query = [NSString stringWithFormat:@"%@+\"user manual\"+filetype:pdf", product[@"productName"]];
+    NSString *query = [NSString stringWithFormat:@"%@+user+manual+guide+instruction+filetype:pdf", product[@"productName"]];
     query = [self urlEncodedStringFromString:query];
     NSString *strUrl = [NSString stringWithFormat:@"http://www.google.com?q=%@&gws_rd=ssl#q=%@", query, query];
     NSLog(@"%@", strUrl);
@@ -232,7 +232,7 @@ NSString *const SSI_PARSE_API = @"SEM34E7A133DBAF72F4F4F343C54BD0EF192";
 + (NSURL *)customerServiceLinkForProduct:(PFObject *)product
 {
 //    NSString *query = [NSString stringWithFormat:@"%@+customer+service+phone+number", product[@"purchasedFrom"]];
-    NSString *query = [NSString stringWithFormat:@"%@+\"contact us\"+\"customer support\"", product[@"productName"]];
+    NSString *query = [NSString stringWithFormat:@"%@+contact+customer+service+support", ([product[@"purchasedFrom"] length] > 0) ? product[@"purchasedFrom"] : product[@"productName"]];
     query = [self urlEncodedStringFromString:query];
     NSString *strUrl = [NSString stringWithFormat:@"http://www.google.com?q=%@&gws_rd=ssl#q=%@", query, query];
 

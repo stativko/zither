@@ -303,19 +303,16 @@ enum {
     NSString *productName = self.productNameCell.textField.text;
     NSDate *purchasedDate = [SSIUtils dateFromString:self.purchasedOnCell.textField.text type:DATETYPE_EDITPRODUCT];
     NSString *purchasedFrom = self.purchasedFromCell.textField.text;
-//    NSString *productURL = self.productURLCell.textField.text;
     NSString *note = self.noteCell.noteTextView.text;
 
     productName = (productName == nil) ? @"" : productName;
     purchasedDate = (purchasedDate == nil) ? [NSDate date] : purchasedDate;
     purchasedFrom = (purchasedFrom == nil) ? @"" : purchasedFrom;
-//    productURL = (productURL == nil) ? @"" : productURL;
     note = (note == nil) ? @"" : note;
 
     self.product[@"productName"] = productName;
     self.product[@"purchasedOn"] = purchasedDate;
     self.product[@"purchasedFrom"] = purchasedFrom;
-//    self.product[@"productURL"] = productURL;
     self.product[@"note"] = [note stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     self.product[@"owner"] = [PFUser currentUser];
 
@@ -328,11 +325,6 @@ enum {
         }
         
         [SVProgressHUD dismiss];
-
-        if (succeeded && error == nil) {
-
-            [[SSINotificationManager sharedManager] registerLocalNotifications];
-        }
 
         if (self.shouldAddProduct) {
 
@@ -593,6 +585,7 @@ enum {
     self.product[@"warrantyMonth"] = @(month);
     self.product[@"warrantyDay"] = @(day);
     self.warrantyCell.textField.text = [SSIUtils warrantyStringFromProduct:self.product];
+    self.product[@"warrantyExpirationDate"] = [SSIUtils expireDateFromProduct:self.product];
     self.isWarrantyEdit = YES;
 
 }
@@ -603,6 +596,9 @@ enum {
 - (void)picker:(NSInteger)tag didChooseDate:(NSDate *)date
 {
     self.purchasedOnCell.textField.text = [SSIUtils stringFromDate:date type:DATETYPE_EDITPRODUCT];
+    NSDate *expireDate = [SSIUtils expireDateFromProduct:self.product];
+    DDLogDebug(@"Changing Expiration Date to %@", expireDate);
+    self.product[@"warrantyExpirationDate"] = expireDate;
     self.isWarrantyEdit = YES;
 }
 
