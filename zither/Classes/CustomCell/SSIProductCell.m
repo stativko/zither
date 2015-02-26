@@ -32,6 +32,8 @@
 
 - (void)setProduct:(PFObject *)product
 {
+    [self.productImageView setImage:self.placeholderImage];
+
     self.backgroundColor = [UIColor whiteColor];
     [self.lblProductName setText:product[@"productName"]];
 
@@ -59,7 +61,6 @@
     }
     else if (productImageUrl) {
         [self.productImageView cancelImageRequestOperation];
-        [self.productImageView setImage:self.placeholderImage];
 
         [self.productImageView setImageWithURL:[NSURL URLWithString:productImageUrl] placeholderImage:self.placeholderImage];
     }

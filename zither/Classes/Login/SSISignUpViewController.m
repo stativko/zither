@@ -42,23 +42,23 @@
     return YES;
 }
 
+- (void)addACLToUser:(PFUser*)newUser {
+    PFACL *userACL = [PFACL ACLWithUser:newUser];
+    [newUser setACL:userACL];
+    [newUser saveInBackground];
+}
 - (void)actionCreateAccount
 {
     self.tfEmail.text = [self.tfEmail.text lowercaseString];
 
     if ([self validateFields]) {
-
         [SVProgressHUD showWithStatus:@"Signing up..."];
         PFUser *newUser = [PFUser user];
         [newUser setEmail:self.tfEmail.text];
         [newUser setUsername:self.tfEmail.text];
         [newUser setPassword:self.tfPassword.text];
-        PFACL *userACL = [PFACL ACLWithUser:newUser];
-        [newUser setACL:userACL];
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-
             if (error) {
-
                 [SVProgressHUD showErrorWithStatus:@"Error signing up"];
                 NSString *parseMessage = [[error userInfo] objectForKey:@"error"];
                 if (parseMessage) {
@@ -66,6 +66,7 @@
                 }
             }
             else {
+
                 // See note in LoginViewController.  Inside my wrapper, it's
                 // slightly different here for some reason
                 SSIIPGateway *ipgw = [SSIIPGateway instance];
@@ -78,7 +79,7 @@
                 } else {
                     [Intercom beginSessionForUserWithEmail:newUser.email completion:nil];
                 }
-
+                [self addACLToUser:newUser];
                 [SVProgressHUD showSuccessWithStatus:@"User registered successfully"];
                 [self performSegueWithIdentifier:@"successLogin" sender:self];
             }

@@ -1021,7 +1021,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="With built-in Thunderbolt technology--the" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WUH-VZ-yGd">
-                                                    <rect key="frame" x="20" y="0.0" width="280" height="21.5"/>
+                                                    <rect key="frame" x="20" y="0.0" width="280" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1040,7 +1040,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple Thunderbolt Display" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qcw-Yz-UWK">
-                                                    <rect key="frame" x="20" y="0.0" width="250" height="46.5"/>
+                                                    <rect key="frame" x="20" y="0.0" width="250" height="47"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
@@ -1303,7 +1303,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="RUK-9l-TGo"/>
         <segue reference="e6m-Lj-Bmq"/>
+        <segue reference="2Jc-28-Qyc"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,6 +8,7 @@
 
 #import "SSIPreviewImageViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "SDWebImageManager.h"
 
 @interface SSIPreviewImageViewController () <UIScrollViewDelegate>
 
@@ -15,8 +16,7 @@
 
 @implementation SSIPreviewImageViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 
@@ -24,17 +24,16 @@
 
     UIImage *placeholderImage = [UIImage imageNamed:@"product_placeholder"];
     [self.imageView setImage:placeholderImage];
-
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.imageUrl]];
     UIActivityIndicatorView *av = [UIActivityIndicatorView createActivityIndicatorInView:self.view style:UIActivityIndicatorViewStyleGray offset:UIOffsetZero];
-    [self.imageView setImageWithURLRequest:request placeholderImage:placeholderImage success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-        [av removeFromSuperview];
-        [self.imageView setImage:image];
-        [self updateImageViewFrame];
-        [self.scrollView setMinimumZoomScale:1.0f];
-        [self.scrollView setMaximumZoomScale:4.0f];
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
 
+    [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:self.imageUrl] options:SDWebImageRetryFailed progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+        if (image && !error) {
+            [av removeFromSuperview];
+            [self.imageView setImage:image];
+            [self updateImageViewFrame];
+            [self.scrollView setMinimumZoomScale:1.0f];
+            [self.scrollView setMaximumZoomScale:4.0f];
+        }
     }];
 }
 

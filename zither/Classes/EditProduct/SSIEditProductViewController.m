@@ -11,6 +11,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "UIImageView+AFNetworking.h"
 #import "SSINotificationManager.h"
+#import "SDWebImageManager.h"
 
 #import <Intercom/Intercom.h>
 #import "SSIMyStuffViewController.h"
@@ -319,7 +320,7 @@ enum {
     // NOTE: This is also were we should verify that changes were made.
 
     PFBooleanResultBlock saveFinish = ^(BOOL succeeded, NSError *error) {
-        if (self.copiedProduct && ![[self.copiedProduct objectForKey:@"owner"] isEqualToString:[PFUser currentUser].objectId]) {
+        if (self.copiedProduct && ![[[self.copiedProduct objectForKey:@"owner"] objectId] isEqualToString:[PFUser currentUser].objectId]) {
             [self.copiedProduct incrementKey:@"numShares"];
             [self.copiedProduct saveInBackground]; // save the increment on the object
         }
@@ -372,6 +373,8 @@ enum {
         [productReceipt saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
 
             if (succeeded) {
+                DDLogDebug(@"Saved receipt image: %@", productReceipt.url);
+                [[SDWebImageManager sharedManager] saveImageToCache:self.productReceipt_New forURL:[NSURL URLWithString:productReceipt.url]];
 
                 self.product[@"productReceipt"] = productReceipt;
             }
@@ -389,6 +392,8 @@ enum {
         PFFile *productSerialNumber = [PFFile fileWithName:@"serial.jpg" data:UIImageJPEGRepresentation(self.productSerialNumber_New, .5)];
         [productSerialNumber saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
+                DDLogDebug(@"Saved serial number image: %@", productSerialNumber.url);
+                [[SDWebImageManager sharedManager] saveImageToCache:self.productSerialNumber_New forURL:[NSURL URLWithString:productSerialNumber.url]];
 
                 self.product[@"productSerialNumber"] = productSerialNumber;
             }

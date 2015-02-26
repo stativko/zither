@@ -31,11 +31,11 @@
  Ref. site (countrycode.org)
  */
 
-static NSMutableDictionary *kMapCCode2CN;
+static NSMutableDictionary *kMapCCode2CN = nil;
 
 // Cached metadata
-static NBPhoneMetaData *cachedMetaData;
-static NSString *cachedMetaDataKey;
+static NBPhoneMetaData *cachedMetaData = nil;
+static NSString *cachedMetaDataKey = nil;
 
 static BOOL isTestMode = NO;
 
@@ -212,7 +212,7 @@ static BOOL isTestMode = NO;
     
     regionCode = [regionCode uppercaseString];
     
-    if ([cachedMetaDataKey isEqualToString:regionCode]) {
+    if (cachedMetaDataKey && [cachedMetaDataKey isEqualToString:regionCode]) {
         return cachedMetaData;
     }
     

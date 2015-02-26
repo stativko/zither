@@ -12,5 +12,7 @@ pod 'SVProgressHUD'
 pod 'CocoaLumberjack'
 pod 'Reader', :git => 'https://github.com/vfr/Reader.git'
 #pod 'FormatterKit'
+pod 'SDWebImage'
+
 
 link_with 'zither', 'zither-dev'
