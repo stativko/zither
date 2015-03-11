@@ -151,6 +151,8 @@
 		26AC180A1A8D3CFF00FEFB49 /* UIActivityIndicatorView+KLI.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AC18081A8D3CFF00FEFB49 /* UIActivityIndicatorView+KLI.m */; };
 		26AC180D1A8E778100FEFB49 /* SSIProductSearchResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AC180C1A8E778100FEFB49 /* SSIProductSearchResults.m */; };
 		26AC180E1A8E778100FEFB49 /* SSIProductSearchResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AC180C1A8E778100FEFB49 /* SSIProductSearchResults.m */; };
+		26CEA89B1A9FB6DF00DB391D /* UIView+KLI.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CEA89A1A9FB6DF00DB391D /* UIView+KLI.m */; };
+		26CEA89C1A9FB6DF00DB391D /* UIView+KLI.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CEA89A1A9FB6DF00DB391D /* UIView+KLI.m */; };
 		A59CDC2D4C13D4FF5E3BC21C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F9FB293418673B1413F3CF /* libPods.a */; };
 		EBA0A55DE65D1E571746477D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F9FB293418673B1413F3CF /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -264,6 +266,8 @@
 		26AC18081A8D3CFF00FEFB49 /* UIActivityIndicatorView+KLI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIActivityIndicatorView+KLI.m"; path = "Additions/UIActivityIndicatorView+KLI.m"; sourceTree = "<group>"; };
 		26AC180B1A8E778100FEFB49 /* SSIProductSearchResults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSIProductSearchResults.h; sourceTree = "<group>"; };
 		26AC180C1A8E778100FEFB49 /* SSIProductSearchResults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSIProductSearchResults.m; sourceTree = "<group>"; };
+		26CEA8991A9FB6DF00DB391D /* UIView+KLI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+KLI.h"; path = "Additions/UIView+KLI.h"; sourceTree = "<group>"; };
+		26CEA89A1A9FB6DF00DB391D /* UIView+KLI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+KLI.m"; path = "Additions/UIView+KLI.m"; sourceTree = "<group>"; };
 		BCAF1BE8502091C9901CD7A3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F3F9FB293418673B1413F3CF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -512,6 +516,8 @@
 				26AC18071A8D3CFE00FEFB49 /* UIActivityIndicatorView+KLI.h */,
 				26AC18081A8D3CFF00FEFB49 /* UIActivityIndicatorView+KLI.m */,
 				26A9FD451A8BEA7600E87E53 /* AdditionsImport.h */,
+				26CEA8991A9FB6DF00DB391D /* UIView+KLI.h */,
+				26CEA89A1A9FB6DF00DB391D /* UIView+KLI.m */,
 			);
 			name = Additions;
 			sourceTree = "<group>";
@@ -891,6 +897,7 @@
 				26A9FD201A8BE6D800E87E53 /* SSIEditProductViewController.m in Sources */,
 				26A9FD261A8BE6D800E87E53 /* SSIIntroView.m in Sources */,
 				26A9FD1C1A8BE6D800E87E53 /* SSIDatePicker.m in Sources */,
+				26CEA89B1A9FB6DF00DB391D /* UIView+KLI.m in Sources */,
 				26AC180D1A8E778100FEFB49 /* SSIProductSearchResults.m in Sources */,
 				26A9FD181A8BE6D800E87E53 /* SSIProductCell.m in Sources */,
 				26A9FD2C1A8BE6D800E87E53 /* SSISignUpViewController.m in Sources */,
@@ -925,6 +932,7 @@
 				26A9FD211A8BE6D800E87E53 /* SSIEditProductViewController.m in Sources */,
 				26A9FD271A8BE6D800E87E53 /* SSIIntroView.m in Sources */,
 				26A9FD1D1A8BE6D800E87E53 /* SSIDatePicker.m in Sources */,
+				26CEA89C1A9FB6DF00DB391D /* UIView+KLI.m in Sources */,
 				26AC180E1A8E778100FEFB49 /* SSIProductSearchResults.m in Sources */,
 				26A9FD191A8BE6D800E87E53 /* SSIProductCell.m in Sources */,
 				26A9FD2D1A8BE6D800E87E53 /* SSISignUpViewController.m in Sources */,
@@ -985,7 +993,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PROVISIONING_PROFILE = "b1373fcf-d4d4-47b1-98d2-37fb3c8be6bb";
 				SDKROOT = iphoneos;
 			};
@@ -1036,7 +1044,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1059,7 +1067,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1163,7 +1171,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				FRAMEWORK_SEARCH_PATHS = (

@@ -55,6 +55,9 @@
         UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
         UIViewController *viewController = [navigationController.storyboard instantiateViewControllerWithIdentifier:@"myStuffScreen"];
         [navigationController setViewControllers:@[viewController] animated:NO];
+        if (![[[[PFInstallation currentInstallation] objectForKey:@"user"] objectId] isEqualToString:[PFUser currentUser].objectId]) {
+            [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"user"];
+        }
     }
 
     // Override point for customization after application launch.

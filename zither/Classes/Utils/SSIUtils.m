@@ -220,8 +220,13 @@ NSString *const SSI_PARSE_API = @"SEM34E7A133DBAF72F4F4F343C54BD0EF192";
 
 + (NSURL *)findManualLinkForProduct:(PFObject *)product
 {
+    NSArray *nameComponents = [product[@"productName"] componentsSeparatedByString:@" "];
+    NSUInteger numComponents = MIN([nameComponents count], 6);
+    NSArray *firstComponents = [nameComponents subarrayWithRange:NSMakeRange(0, numComponents)];
+    NSString *shortName = [firstComponents componentsJoinedByString:@" "];
+    
 //    NSString *query = [NSString stringWithFormat:@"%@+manual", product[@"productName"]];
-    NSString *query = [NSString stringWithFormat:@"%@+user+manual+guide+instruction+filetype:pdf", product[@"productName"]];
+    NSString *query = [NSString stringWithFormat:@"%@+user+manual+guide+instruction+filetype:pdf", shortName];
     query = [self urlEncodedStringFromString:query];
     NSString *strUrl = [NSString stringWithFormat:@"http://www.google.com?q=%@&gws_rd=ssl#q=%@", query, query];
     NSLog(@"%@", strUrl);
@@ -231,8 +236,11 @@ NSString *const SSI_PARSE_API = @"SEM34E7A133DBAF72F4F4F343C54BD0EF192";
 
 + (NSURL *)customerServiceLinkForProduct:(PFObject *)product
 {
-//    NSString *query = [NSString stringWithFormat:@"%@+customer+service+phone+number", product[@"purchasedFrom"]];
-    NSString *query = [NSString stringWithFormat:@"%@+contact+customer+service+support", ([product[@"purchasedFrom"] length] > 0) ? product[@"purchasedFrom"] : product[@"productName"]];
+    NSArray *nameComponents = [product[@"productName"] componentsSeparatedByString:@" "];
+    NSUInteger numComponents = MIN([nameComponents count], 6);
+    NSArray *firstComponents = [nameComponents subarrayWithRange:NSMakeRange(0, numComponents)];
+    NSString *shortName = [firstComponents componentsJoinedByString:@" "];
+    NSString *query = [NSString stringWithFormat:@"%@+contact+customer+service+support", ([product[@"purchasedFrom"] length] > 0) ? product[@"purchasedFrom"] : shortName];
     query = [self urlEncodedStringFromString:query];
     NSString *strUrl = [NSString stringWithFormat:@"http://www.google.com?q=%@&gws_rd=ssl#q=%@", query, query];
 

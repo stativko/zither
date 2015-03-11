@@ -20,17 +20,47 @@
 
 @implementation SSIPreviewLinkViewController
 
-- (void)presentPDFReaderWithFilePath:(NSString*)filePath {
-    if (filePath) {
-        ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:nil];
-        self.readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
-        self.readerViewController.delegate = self;
-        self.readerViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        self.readerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-        [self presentViewController:self.readerViewController animated:YES completion:nil];
+- (BOOL)isPDF:(NSString *)filePath
+{
+    BOOL state = NO;
+    
+    if (filePath != nil) // Must have a file path
+    {
+        const char *path = [filePath fileSystemRepresentation];
+        
+        int fd = open(path, O_RDONLY); // Open the file
+        
+        if (fd > 0) // We have a valid file descriptor
+        {
+            const char sig[1024]; // File signature buffer
+            
+            ssize_t len = read(fd, (void *)&sig, sizeof(sig));
+            
+            state = (strnstr(sig, "%PDF", len) != NULL);
+            
+            close(fd); // Close the file
+        }
     }
+    
+    return state;
 }
 
+- (void)presentPDFReaderWithFilePath:(NSString*)filePath {
+    if (filePath && [self isPDF:filePath]) {
+        ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:nil];
+        self.readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
+        if (self.readerViewController) {
+            self.readerViewController.delegate = self;
+            self.readerViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            self.readerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+            [self presentViewController:self.readerViewController animated:YES completion:nil];
+        }
+    }
+}
+-(void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [SVProgressHUD dismiss];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -44,13 +74,15 @@
     self.activityView = [UIActivityIndicatorView createActivityIndicatorInView:self.view style:UIActivityIndicatorViewStyleGray offset:UIOffsetZero];
     if (self.fileToLoad) {
         if ([self cachedFileExists:self.fileToLoad.name]) {
-            [self presentCachedFileName:self.fileToLoad.name];
             self.savePage.enabled = YES;
+            [self presentCachedFileName:self.fileToLoad.name];
         } else {
+            [SVProgressHUD showWithStatus:@"Downloading..."];
             [self.fileToLoad getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                self.savePage.enabled = YES;
+                [SVProgressHUD dismiss];
                 [self saveLocally:data withName:self.fileToLoad.name];
                 [self presentCachedFileName:self.fileToLoad.name];
-                self.savePage.enabled = YES;
             }];
         }
     } else if (self.savedUrl) {
@@ -62,7 +94,7 @@
 }
 
 - (void)refreshSaveClearButton {
-    if (self.fileToLoad || self.savedUrl) {
+    if ((self.fileToLoad) || self.savedUrl) {
         [self.savePage setTitle:@"Clear" forState:UIControlStateNormal];
     } else {
         [self.savePage setTitle:@"Save" forState:UIControlStateNormal];
@@ -99,7 +131,8 @@
 
 - (BOOL)cachedFileExists:(NSString*)fileName {
     NSString *pathName = [self localFileCachePathWithName:fileName];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:pathName]) {
+    BOOL isDirectory;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:pathName isDirectory:&isDirectory]) {
         return YES;
     }
     return NO;
@@ -107,10 +140,12 @@
 
 - (BOOL)saveLocally:(NSData*)data withName:(NSString*)fileName {
     NSString *filePath = [self localFileCachePathWithName:fileName];
-    return [data writeToFile:filePath atomically:YES];
+    return [data writeToFile:filePath atomically:NO];
 }
 
 - (void)presentCachedFileName:(NSString*)fileName {
+    self.savePage.enabled = YES;
+
     [self.activityView removeFromSuperview];
 
     NSString *filePath = [self localFileCachePathWithName:fileName];
@@ -135,37 +170,46 @@
 //    }
     [super actionBack];
 }
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    self.savePage.enabled = YES;
 
+    DDLogDebug(@"Received Error %@",error);
+    
+//    if (error) {
+//        [[[UIAlertView alloc] initWithTitle:@"Try again." message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+//    }
+}
 - (IBAction)rightButtonAction:(id)sender {
     self.shouldSaveOnDismiss = NO;
     self.webView.hidden = NO;
 
     [self.doneSavingLabel removeFromSuperview];
-    if ([self cachedFileExists:self.fileToLoad.name] || self.savedUrl) {
+    if ([[sender titleLabel].text isEqualToString:@"Clear"]) {
         [self.delegate previewControllerDidClearLink:self];
         NSString *localFile = [self localFileCachePathWithName:self.fileToLoad.name];
         if (localFile) {
-            [[NSFileManager defaultManager] removeItemAtPath:localFile error:nil];
+            NSError *error = nil;
+            [[NSFileManager defaultManager] removeItemAtPath:localFile error:&error];
+            if (error) {
+                DDLogDebug(@"Received Error Removing file %@",error);
+            }
         }
         self.fileToLoad = nil;
         self.savedUrl = nil;
+        self.activityView = [UIActivityIndicatorView createActivityIndicatorInView:self.view style:UIActivityIndicatorViewStyleGray offset:UIOffsetZero];
         [self.webView loadRequest:[NSURLRequest requestWithURL:self.url]];
     } else {
         if ([self.fileToLoad.name hasSuffix:@"pdf"]) {
             [self.delegate previewController:self didSaveFile:self.fileToLoad withURL:[NSURL URLWithString:self.fileToLoad.url]];
         } else {
-            NSData *htmlFile = [NSData dataWithContentsOfURL:self.webView.request.URL];
-            NSString *name = [NSString stringWithFormat:@"%@-%@.html", self.productId, self.userInfo[@"type"]];
-            self.fileToLoad = [PFFile fileWithName:name data:htmlFile];
-            [self.delegate previewController:self didSaveFile:self.fileToLoad withURL:self.webView.request.URL];
+            self.savedUrl = self.webView.request.URL;
+            [self.delegate previewController:self didSaveLink:self.webView.request.URL];
         }
-//        else {
-//            self.savedUrl = self.webView.request.URL;
-//            [self.delegate previewController:self didSaveLink:self.webView.request.URL];
-//        }
     }
     [self refreshSaveClearButton];
 }
+
 
 #define PFFileMaxNumBytes (10485760)
 - (void)loadPDFFromLink:(NSURL*)pdfLink {
@@ -178,23 +222,45 @@
     }
     
     self.activityView = [UIActivityIndicatorView createActivityIndicatorInView:self.view style:UIActivityIndicatorViewStyleGray offset:UIOffsetZero];
-    NSData *pdfFile = [NSData dataWithContentsOfURL:pdfLink];
-    [self saveLocally:pdfFile withName:name];
-
-    if (pdfFile.length >= PFFileMaxNumBytes) {
-        self.savedUrl = pdfLink;
-        [self.delegate previewController:self didSaveLink:pdfLink];
-
-    } else {
-        self.fileToLoad = [PFFile fileWithName:name data:pdfFile];
-        [self.delegate previewController:self didSaveFile:self.fileToLoad withURL:pdfLink];
-    }
-    [self presentCachedFileName:name];
-//    self.shouldSaveOnDismiss = YES;
-
+    self.savePage.enabled = NO;
+    [SVProgressHUD showWithStatus:@"Downloading..."];
+        [[[NSURLSession sharedSession] downloadTaskWithURL:pdfLink completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+            NSData *pdfFile = [NSData dataWithContentsOfURL:location];
+            [SVProgressHUD dismiss];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSUInteger statusCode = 200;
+                if ([response respondsToSelector:@selector(statusCode)]) {
+                    statusCode = [(NSHTTPURLResponse*)response statusCode];
+                }
+                self.savePage.enabled = YES;
+                if (pdfFile && statusCode != 404) {
+                    if ([self saveLocally:pdfFile withName:name] && self.isViewLoaded) {
+                        if (pdfFile.length >= PFFileMaxNumBytes) {
+                            self.savedUrl = pdfLink;
+                            [self.delegate previewController:self didSaveLink:pdfLink];
+                        } else {
+                            self.fileToLoad = [PFFile fileWithName:name data:pdfFile];
+                            [self.delegate previewController:self didSaveFile:self.fileToLoad withURL:pdfLink];
+                        }
+                        if ([self cachedFileExists:name]) {
+                            [self presentCachedFileName:name];
+                        }
+                    }
+                } else {
+                    if (error) {
+                        DDLogDebug(@"Received Error %@",error);
+                    } else if (statusCode == 404) {
+                        [[[UIAlertView alloc] initWithTitle:@"Received 404" message:@"This file is not found on the link provided" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+                    }
+                    [self.activityView removeFromSuperview];
+                }
+            });
+        }] resume];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    self.webView.hidden = NO;
+
     if ([[request.URL absoluteString] hasSuffix:@".pdf"]) {
         [self loadPDFFromLink:request.URL];
         return NO;
@@ -204,10 +270,10 @@
 
 - (void)dismissReaderViewController:(ReaderViewController *)viewController {
     [viewController dismissViewControllerAnimated:YES completion:^{
-        self.doneSavingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
+        self.doneSavingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 240, 100)];
         self.doneSavingLabel.center = self.view.center;
-        self.doneSavingLabel.textAlignment = NSTextAlignmentCenter;
-        self.doneSavingLabel.text = [NSString stringWithFormat:@"PDF saved for off-line reading, tap \"Clear\" to search again."];
+        self.doneSavingLabel.textAlignment = NSTextAlignmentLeft;
+        self.doneSavingLabel.text = [NSString stringWithFormat:@"PDF saved for off-line reading.\n\nTap \"Clear\" to search again."];
         self.doneSavingLabel.textColor = [UIColor darkGrayColor];
         self.doneSavingLabel.numberOfLines = 0;
         self.webView.hidden = YES;

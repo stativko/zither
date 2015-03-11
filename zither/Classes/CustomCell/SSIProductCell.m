@@ -64,6 +64,7 @@
 
         [self.productImageView setImageWithURL:[NSURL URLWithString:productImageUrl] placeholderImage:self.placeholderImage];
     }
+
 }
 
 @end

@@ -157,11 +157,11 @@
             return 0.0;
         }
     }
-    else if (indexPath.row == 4) {  // customer service.
-
-        BOOL hasPurchased = ([self.product[@"purchasedFrom"] length] > 0);
-        return (hasPurchased == YES) ? 44.0 : 0;
-    }
+//    else if (indexPath.row == 4) {  // customer service.
+//
+//        BOOL hasPurchased = ([self.product[@"purchasedFrom"] length] > 0);
+//        return (hasPurchased == YES) ? 44.0 : 0;
+//    }
 
     return 44.0;
 }
@@ -316,7 +316,9 @@
         //    PFFile *parseFile = [PFFile fileWithName:name data:file];
         [self.product setObject:file forKey:previewType];
         [self.product saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            DDLogDebug(@"Received Error %@",error);
+            if (error) {
+                DDLogDebug(@"Error saving: %@",error);
+            }
         }];
     }
 }

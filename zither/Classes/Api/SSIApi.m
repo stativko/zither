@@ -40,15 +40,40 @@
     PFQuery *query = [PFQuery queryWithClassName:kUserProductClassName];
     [query whereKey:@"barcode" equalTo:context.searchTerm];
     [query orderByDescending:@"numShares"];
-    [query setLimit:5];
+    [query setLimit:20];
 //    [query selectKeys:@""] TODO select keys for privacy
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (objects) {
-            context.userProducts = objects;
-        }
         if (error && [error.userInfo objectForKey:@"error"]) {
             completion([error.userInfo objectForKey:@"error"]);
         } else {
+            if (objects.count) {
+                NSMutableArray *productsToReturn = [NSMutableArray new];
+                for (PFObject *product in objects) {
+                    BOOL hasManual = NO;
+                    BOOL hasCustService = NO;
+
+                    if (product[@"manual"] || product[@"manual_url"]) {
+                        hasManual = YES;
+                    }
+                    if (product[@"customerService"] || product[@"customerService_url"]) {
+                        hasCustService = YES;
+                    }
+                    
+                    if (hasManual && hasCustService) {
+                        [productsToReturn setArray:@[product]];
+                        break;
+                    } else if (hasManual || hasCustService) {
+                        [productsToReturn addObject:product];
+                    }
+                }
+                if (productsToReturn.count >=2) {
+                    productsToReturn = [[productsToReturn subarrayWithRange:NSMakeRange(0, 2)] mutableCopy];
+                }
+                if (productsToReturn.count == 0 && objects.count) {
+                    [productsToReturn addObject:objects[0]];
+                }
+                context.userProducts = productsToReturn;
+            }
             completion(nil);
         }
     }];

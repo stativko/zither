@@ -14,6 +14,7 @@
 #define SOURCE_SEMENTIC @"sementic"
 #define SOURCE_VERIFIED @"verifiedUser"
 #define SOURCE_USER_PRODUCT @"userProduct"
+#define DEFAULT_ANIM_SPEED (.3)
 
 #define kUserProductClassName @"Product"
 #define kVerifiedProductClassName @"VerifiedProduct"

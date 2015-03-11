@@ -15,5 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *numSharesLabel;
 
 - (void)setProduct:(PFObject *)product;
+- (void)showManual:(BOOL)show;
+- (void)showCustService:(BOOL)show;
 
 @end

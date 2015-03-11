@@ -57,7 +57,7 @@
 
 - (void)actionTerms
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.silberstudios.tv/?p=12309"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://zither.co/privacy-policy/"]];
 }
 
 #pragma mark -
@@ -74,7 +74,7 @@
         return self.welcomeCell;
     }
 
-    NSString *identifier = [NSString stringWithFormat:@"introCell%d", (NSInteger)indexPath.item + 1];
+    NSString *identifier = [NSString stringWithFormat:@"introCell%ld", (NSInteger)indexPath.item + 1];
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
 
     return cell;

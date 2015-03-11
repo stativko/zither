@@ -11,5 +11,6 @@
 
 #import "UIImageView+AFNetworking.h"
 #import "UIActivityIndicatorView+KLI.h"
+#import "UIView+KLI.h"
 
 #endif

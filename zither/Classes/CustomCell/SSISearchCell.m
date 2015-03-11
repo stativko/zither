@@ -7,9 +7,18 @@
 //
 
 #import "SSISearchCell.h"
+@interface SSISearchCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *manualImage;
+@property (weak, nonatomic) IBOutlet UIImageView *custServiceImage;
 
+@end
 @implementation SSISearchCell
 
+-(void)prepareForReuse {
+    [super prepareForReuse];
+    self.manualImage.alpha = 0;
+    self.manualImage.alpha = 1;
+}
 - (void)setProduct:(PFObject *)product
 {
     self.backgroundColor = [UIColor whiteColor];
@@ -36,6 +45,23 @@
     }
     else if (productImageUrl) {
         [self.productImageView setImageWithURL:[NSURL URLWithString:productImageUrl] placeholderImage:placeholderImage];
+    }
+    [self showManual:(product[@"manual"] || product[@"manual_url"])];
+    [self showCustService:(product[@"customerService"] || product[@"customerService_url"])];
+}
+
+- (void)showManual:(BOOL)show {
+    if (show) {
+        [self.manualImage animateIn];
+    } else {
+        [self.manualImage animateOut];
+    }
+}
+-(void)showCustService:(BOOL)show {
+    if (show) {
+        [self.custServiceImage animateIn];
+    } else {
+        [self.custServiceImage animateOut];
     }
 }
 

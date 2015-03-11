@@ -84,6 +84,11 @@ enum {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
 }
 
+-(void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [SVProgressHUD dismiss];
+}
+
 - (void)configureCells
 {
     UIFont *cellLabelFont = [UIFont fontWithName:@"Avenir-Heavy" size:14.0f];
