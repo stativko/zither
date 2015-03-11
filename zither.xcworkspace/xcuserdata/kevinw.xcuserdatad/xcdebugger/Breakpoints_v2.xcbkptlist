@@ -990,11 +990,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zither/Classes/ProductDetail/SSIPreviewLinkViewController.m"
-            timestampString = "446775283.407258"
+            timestampString = "447778141.263168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
             landmarkName = "-webView:shouldStartLoadWithRequest:navigationType:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1022,11 +1022,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zither/Classes/ProductDetail/SSIPreviewLinkViewController.m"
-            timestampString = "446775283.407258"
+            timestampString = "447778141.263168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
             landmarkName = "-webView:shouldStartLoadWithRequest:navigationType:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1086,11 +1086,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zither/Classes/ProductDetail/SSIPreviewLinkViewController.m"
-            timestampString = "446775283.407258"
+            timestampString = "447778141.263168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "273"
-            endingLineNumber = "273"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
             landmarkName = "-dismissReaderViewController:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1102,11 +1102,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zither/Classes/ProductDetail/SSIPreviewLinkViewController.m"
-            timestampString = "446775283.407258"
+            timestampString = "447778141.263168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
             landmarkName = "-dismissReaderViewController:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1706,11 +1706,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zither/Classes/ProductDetail/SSIPreviewLinkViewController.m"
-            timestampString = "446775283.407258"
+            timestampString = "447778141.263168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
             landmarkName = "-webView:shouldStartLoadWithRequest:navigationType:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1750,7 +1750,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zither/Classes/ProductDetail/SSIPreviewLinkViewController.m"
@@ -1894,7 +1894,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zither/Classes/ProductDetail/SSIProductDetailViewController.m"
@@ -2023,12 +2023,12 @@
                   symbolName = "-[SSIAddProductViewController scanViewController:didScanCode:]"
                   moduleName = "zither"
                   urlString = "file:///Users/kevinw/Documents/IOS/zither/zither/Classes/AddProduct/SSIAddProductViewController.m"
-                  timestampString = "446775441.663812"
+                  timestampString = "447778141.824213"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "92"
                   endingLineNumber = "92"
-                  offsetFromSymbolStart = "112">
+                  offsetFromSymbolStart = "98">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -2037,12 +2037,12 @@
                   symbolName = "__62-[SSIAddProductViewController scanViewController:didScanCode:]_block_invoke"
                   moduleName = "zither"
                   urlString = "file:///Users/kevinw/Documents/IOS/zither/zither/Classes/AddProduct/SSIAddProductViewController.m"
-                  timestampString = "446775441.664148"
+                  timestampString = "447778141.824404"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "92"
                   endingLineNumber = "92"
-                  offsetFromSymbolStart = "24">
+                  offsetFromSymbolStart = "12">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -2114,15 +2114,95 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zither/Classes/ProductDetail/SSIPreviewLinkViewController.m"
-            timestampString = "447721032.199621"
+            timestampString = "447777626.202939"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
+            landmarkName = "-loadPDFFromLink:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "zither/Classes/ProductDetail/SSIPreviewLinkViewController.m"
+            timestampString = "447777806.205943"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "-presentCachedFileName:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "zither/Classes/ProductDetail/SSIPreviewLinkViewController.m"
+            timestampString = "447777829.588087"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
+            landmarkName = "-loadPDFFromLink:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "zither/Classes/ProductDetail/SSIPreviewLinkViewController.m"
+            timestampString = "447778141.263168"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
+            landmarkName = "-webView:shouldStartLoadWithRequest:navigationType:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "zither/Classes/ProductDetail/SSIPreviewLinkViewController.m"
+            timestampString = "447778032.566407"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
+            landmarkName = "-loadPDFFromLink:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "zither/Classes/ProductDetail/SSIPreviewLinkViewController.m"
+            timestampString = "447778141.263168"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
             landmarkName = "-loadPDFFromLink:"
             landmarkType = "5">
          </BreakpointContent>

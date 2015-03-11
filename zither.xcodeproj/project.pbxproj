@@ -677,7 +677,7 @@
 		268C10A91A8BDC5700F77BCF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = "Silber Studios, Inc.";
 				TargetAttributes = {
 					268C10B01A8BDC5700F77BCF = {
@@ -993,7 +993,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "b1373fcf-d4d4-47b1-98d2-37fb3c8be6bb";
 				SDKROOT = iphoneos;
 			};

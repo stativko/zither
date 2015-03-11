@@ -150,7 +150,7 @@
 
     NSString *filePath = [self localFileCachePathWithName:fileName];
     DDLogError(@"Showing Cached File: %@", filePath);
-    if ([fileName hasSuffix:@"pdf"]) {
+    if ([[fileName lowercaseString] hasSuffix:@"pdf"]) {
         [self presentPDFReaderWithFilePath:filePath];
     } else {
         NSData *data = [NSData dataWithContentsOfFile:filePath];
@@ -200,7 +200,7 @@
         self.activityView = [UIActivityIndicatorView createActivityIndicatorInView:self.view style:UIActivityIndicatorViewStyleGray offset:UIOffsetZero];
         [self.webView loadRequest:[NSURLRequest requestWithURL:self.url]];
     } else {
-        if ([self.fileToLoad.name hasSuffix:@"pdf"]) {
+        if ([[self.fileToLoad.name lowercaseString] hasSuffix:@"pdf"]) {
             [self.delegate previewController:self didSaveFile:self.fileToLoad withURL:[NSURL URLWithString:self.fileToLoad.url]];
         } else {
             self.savedUrl = self.webView.request.URL;
@@ -226,8 +226,9 @@
     [SVProgressHUD showWithStatus:@"Downloading..."];
         [[[NSURLSession sharedSession] downloadTaskWithURL:pdfLink completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
             NSData *pdfFile = [NSData dataWithContentsOfURL:location];
-            [SVProgressHUD dismiss];
             dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismiss];
+
                 NSUInteger statusCode = 200;
                 if ([response respondsToSelector:@selector(statusCode)]) {
                     statusCode = [(NSHTTPURLResponse*)response statusCode];
@@ -261,7 +262,7 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     self.webView.hidden = NO;
 
-    if ([[request.URL absoluteString] hasSuffix:@".pdf"]) {
+    if ([[[request.URL absoluteString] lowercaseString] hasSuffix:@".pdf"]) {
         [self loadPDFFromLink:request.URL];
         return NO;
     }
