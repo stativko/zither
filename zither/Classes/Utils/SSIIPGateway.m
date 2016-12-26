@@ -61,7 +61,16 @@ NSString * const kIntercomSecurityOptionsHashKey = @"hmac";
         // Go ahead and start parse.  This might have to be done *after*
         // didFinishLaunching, but in all likelihood, that's already been
         // called, or we're calling this function from there.
+
+        // This is the line of code that needs to be updated:
         [Parse setApplicationId:ParseAppId clientKey:ParseClientKey];
+
+        // taken from: https://github.com/ParsePlatform/parse-server/wiki/Parse-Server-Guide#using-parse-sdks-with-parse-server
+        // [Parse initializeWithConfiguration:[ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
+        //    configuration.applicationId = @"YOUR_APP_ID";
+        //    configuration.clientKey = @"";
+        //    configuration.server = @"http://localhost:1337/parse";
+        // }]];
         
         if ([PFUser currentUser] != nil) {
             self.dataToHash = [PFUser currentUser].email;
