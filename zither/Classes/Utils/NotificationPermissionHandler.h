@@ -8,6 +8,6 @@
 #import <Foundation/Foundation.h>
 
 @interface NotificationPermissionHandler : NSObject
-+ (void)checkPermissions;
-+ (bool)canSendNotifications;
+//+ (void)checkPermissions;
+//+ (bool)canSendNotifications;
 @end

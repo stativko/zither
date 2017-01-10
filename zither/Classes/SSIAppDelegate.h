@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <UserNotifications/UserNotifications.h>
 
 @class SSIMyStuffViewController;
 
-@interface SSIAppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate>
+@interface SSIAppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate, UNUserNotificationCenterDelegate>
 
 + (SSIAppDelegate *)sharedDelegate;
 

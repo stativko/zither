@@ -132,14 +132,14 @@ NSString *const SSI_PARSE_API = @"SEM34E7A133DBAF72F4F4F343C54BD0EF192";
     }
 
     NSDate *date = product[@"purchasedOn"];
-    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:date];
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:date];
     dateComponents.year += year;
     dateComponents.month += month;
     dateComponents.day += day;
 
     NSDate *expirationDate = [[NSCalendar currentCalendar] dateFromComponents:dateComponents];
 
-    dateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:[NSDate date] toDate:expirationDate options:0];
+    dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date] toDate:expirationDate options:0];
 
     year = dateComponents.year;
     month = dateComponents.month;
@@ -183,14 +183,14 @@ NSString *const SSI_PARSE_API = @"SEM34E7A133DBAF72F4F4F343C54BD0EF192";
     }
 
     NSDate *date = product[@"purchasedOn"];
-    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:date];
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:date];
     dateComponents.year += year;
     dateComponents.month += month;
     dateComponents.day += day;
 
     NSDate *expirationDate = [[NSCalendar currentCalendar] dateFromComponents:dateComponents];
 
-    dateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:[NSDate date] toDate:expirationDate options:0];
+    dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay fromDate:[NSDate date] toDate:expirationDate options:0];
     day = dateComponents.day;
 
     return day;
@@ -199,7 +199,7 @@ NSString *const SSI_PARSE_API = @"SEM34E7A133DBAF72F4F4F343C54BD0EF192";
 + (NSDate *)expireDateFromProduct:(PFObject *)product
 {
     NSDate *purchasedOn = product[@"purchasedOn"];
-    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:purchasedOn];
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:purchasedOn];
     dateComponents.day += [product[@"warrantyDay"] intValue];
     dateComponents.month += [product[@"warrantyMonth"] intValue];
     dateComponents.year += [product[@"warrantyYear"] intValue];

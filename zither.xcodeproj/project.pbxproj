@@ -153,13 +153,12 @@
 		26AC180E1A8E778100FEFB49 /* SSIProductSearchResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AC180C1A8E778100FEFB49 /* SSIProductSearchResults.m */; };
 		26CEA89B1A9FB6DF00DB391D /* UIView+KLI.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CEA89A1A9FB6DF00DB391D /* UIView+KLI.m */; };
 		26CEA89C1A9FB6DF00DB391D /* UIView+KLI.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CEA89A1A9FB6DF00DB391D /* UIView+KLI.m */; };
-		A59CDC2D4C13D4FF5E3BC21C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F9FB293418673B1413F3CF /* libPods.a */; };
-		EBA0A55DE65D1E571746477D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F9FB293418673B1413F3CF /* libPods.a */; };
+		6A237FEB3EDEDD435C91B16D /* libPods-zither-dev.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A5E2E4F9F89590220E7427 /* libPods-zither-dev.a */; };
+		EC5C9605E14CC47557A30079 /* libPods-zither.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C1AA7BD920526A64BA31D3D /* libPods-zither.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1B0E00F61876B2C6D011CE1B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		20DD731EBCC546026D8A8512 /* Pods.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.testflight.xcconfig; path = "Pods/Target Support Files/Pods/Pods.testflight.xcconfig"; sourceTree = "<group>"; };
+		0BC52BEDA5376535FF3599AB /* Pods-zither.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zither.testflight.xcconfig"; path = "Pods/Target Support Files/Pods-zither/Pods-zither.testflight.xcconfig"; sourceTree = "<group>"; };
 		2628350B1A941306008C53A7 /* NotificationPermissionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationPermissionHandler.m; sourceTree = "<group>"; };
 		2628350C1A941306008C53A7 /* NotificationPermissionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationPermissionHandler.h; sourceTree = "<group>"; };
 		262835161A941C72008C53A7 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -268,8 +267,13 @@
 		26AC180C1A8E778100FEFB49 /* SSIProductSearchResults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSIProductSearchResults.m; sourceTree = "<group>"; };
 		26CEA8991A9FB6DF00DB391D /* UIView+KLI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+KLI.h"; path = "Additions/UIView+KLI.h"; sourceTree = "<group>"; };
 		26CEA89A1A9FB6DF00DB391D /* UIView+KLI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+KLI.m"; path = "Additions/UIView+KLI.m"; sourceTree = "<group>"; };
-		BCAF1BE8502091C9901CD7A3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		F3F9FB293418673B1413F3CF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		505FF759958BC560BD504423 /* Pods-zither-dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zither-dev.release.xcconfig"; path = "Pods/Target Support Files/Pods-zither-dev/Pods-zither-dev.release.xcconfig"; sourceTree = "<group>"; };
+		5B66F804C8A647C19495341D /* Pods-zither.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zither.release.xcconfig"; path = "Pods/Target Support Files/Pods-zither/Pods-zither.release.xcconfig"; sourceTree = "<group>"; };
+		5C1AA7BD920526A64BA31D3D /* libPods-zither.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-zither.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66A5E2E4F9F89590220E7427 /* libPods-zither-dev.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-zither-dev.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		760618784A1337AF2188D9C5 /* Pods-zither-dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zither-dev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-zither-dev/Pods-zither-dev.debug.xcconfig"; sourceTree = "<group>"; };
+		879797E461C5C0A67B79C24E /* Pods-zither-dev.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zither-dev.testflight.xcconfig"; path = "Pods/Target Support Files/Pods-zither-dev/Pods-zither-dev.testflight.xcconfig"; sourceTree = "<group>"; };
+		A22AECB4911C189C378A0F62 /* Pods-zither.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zither.debug.xcconfig"; path = "Pods/Target Support Files/Pods-zither/Pods-zither.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,7 +286,7 @@
 				26A9FD491A8BEE6B00E87E53 /* AVFoundation.framework in Frameworks */,
 				26A9FD471A8BEE6100E87E53 /* CoreMedia.framework in Frameworks */,
 				262835171A941C72008C53A7 /* Crashlytics.framework in Frameworks */,
-				A59CDC2D4C13D4FF5E3BC21C /* libPods.a in Frameworks */,
+				EC5C9605E14CC47557A30079 /* libPods-zither.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,7 +299,7 @@
 				26A9FD4F1A8BEE9D00E87E53 /* CoreGraphics.framework in Frameworks */,
 				26A9FD4E1A8BEE9700E87E53 /* AVFoundation.framework in Frameworks */,
 				262835181A941C72008C53A7 /* Crashlytics.framework in Frameworks */,
-				EBA0A55DE65D1E571746477D /* libPods.a in Frameworks */,
+				6A237FEB3EDEDD435C91B16D /* libPods-zither-dev.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,8 +313,8 @@
 				268C10CD1A8BDC5800F77BCF /* zitherTests */,
 				268C10B21A8BDC5700F77BCF /* Products */,
 				26A9FD521A8BF63100E87E53 /* Resource */,
-				9F69A2DC5ED3DFAFE9A379AD /* Pods */,
 				600F889BB8C1D4A37B1928DA /* Frameworks */,
+				B4C4D81CA3F30EC3688B2AE8 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -500,8 +504,8 @@
 		26A9FD071A8BE6D800E87E53 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				2628350B1A941306008C53A7 /* NotificationPermissionHandler.m */,
 				2628350C1A941306008C53A7 /* NotificationPermissionHandler.h */,
+				2628350B1A941306008C53A7 /* NotificationPermissionHandler.m */,
 				26A9FD081A8BE6D800E87E53 /* SSIIPGateway.h */,
 				26A9FD091A8BE6D800E87E53 /* SSIIPGateway.m */,
 				26A9FD0A1A8BE6D800E87E53 /* SSIUtils.h */,
@@ -614,17 +618,21 @@
 				26A9FD4A1A8BEE7500E87E53 /* CoreGraphics.framework */,
 				26A9FD481A8BEE6B00E87E53 /* AVFoundation.framework */,
 				26A9FD461A8BEE6100E87E53 /* CoreMedia.framework */,
-				F3F9FB293418673B1413F3CF /* libPods.a */,
+				5C1AA7BD920526A64BA31D3D /* libPods-zither.a */,
+				66A5E2E4F9F89590220E7427 /* libPods-zither-dev.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9F69A2DC5ED3DFAFE9A379AD /* Pods */ = {
+		B4C4D81CA3F30EC3688B2AE8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1B0E00F61876B2C6D011CE1B /* Pods.debug.xcconfig */,
-				BCAF1BE8502091C9901CD7A3 /* Pods.release.xcconfig */,
-				20DD731EBCC546026D8A8512 /* Pods.testflight.xcconfig */,
+				A22AECB4911C189C378A0F62 /* Pods-zither.debug.xcconfig */,
+				5B66F804C8A647C19495341D /* Pods-zither.release.xcconfig */,
+				0BC52BEDA5376535FF3599AB /* Pods-zither.testflight.xcconfig */,
+				760618784A1337AF2188D9C5 /* Pods-zither-dev.debug.xcconfig */,
+				505FF759958BC560BD504423 /* Pods-zither-dev.release.xcconfig */,
+				879797E461C5C0A67B79C24E /* Pods-zither-dev.testflight.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -636,12 +644,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 268C10D41A8BDC5800F77BCF /* Build configuration list for PBXNativeTarget "zither" */;
 			buildPhases = (
-				B4B83C7DB2C0B07B60A0CFB8 /* Check Pods Manifest.lock */,
+				136566DE0467FF9599615B70 /* [CP] Check Pods Manifest.lock */,
 				268C10AD1A8BDC5700F77BCF /* Sources */,
 				268C10AE1A8BDC5700F77BCF /* Frameworks */,
 				268C10AF1A8BDC5700F77BCF /* Resources */,
-				C06DD037DFE7BC75171D81E1 /* Copy Pods Resources */,
 				262835151A941C45008C53A7 /* ShellScript */,
+				EA7408F85D9F30841B3B2F9B /* [CP] Embed Pods Frameworks */,
+				BEDB56462B7F4905EC2A630C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -656,11 +665,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 268C10E41A8BDDFC00F77BCF /* Build configuration list for PBXNativeTarget "zither-dev" */;
 			buildPhases = (
-				E8BDFE222E40D6B2FC537B0C /* Check Pods Manifest.lock */,
+				8BA76C0100223BAD52FBB2B5 /* [CP] Check Pods Manifest.lock */,
 				268C10DB1A8BDDFC00F77BCF /* Sources */,
 				268C10DF1A8BDDFC00F77BCF /* Frameworks */,
 				268C10E01A8BDDFC00F77BCF /* Resources */,
-				3A81FAA2758EA1DDF13C1571 /* Copy Pods Resources */,
+				0624BB443AC01C40050B0EBD /* [CP] Embed Pods Frameworks */,
+				6A6FD751FEFB5AC48981AA02 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -677,12 +687,12 @@
 		268C10A91A8BDC5700F77BCF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Silber Studios, Inc.";
 				TargetAttributes = {
 					268C10B01A8BDC5700F77BCF = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = TYUW8KDLD2;
+						ProvisioningStyle = Automatic;
 					};
 					268C10DA1A8BDDFC00F77BCF = {
 						DevelopmentTeam = TYUW8KDLD2;
@@ -806,6 +816,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0624BB443AC01C40050B0EBD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-zither-dev/Pods-zither-dev-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		136566DE0467FF9599615B70 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		262835151A941C45008C53A7 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -819,64 +859,64 @@
 			shellPath = /bin/sh;
 			shellScript = "./Crashlytics.framework/run a8612eae02d0a75c907bb68c09ea8a6e62f2a18e 9a8afc48c7a769d685678f563dec57177ee8e91bfa7a7d4c2c1b276a98d88597";
 		};
-		3A81FAA2758EA1DDF13C1571 /* Copy Pods Resources */ = {
+		6A6FD751FEFB5AC48981AA02 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-zither-dev/Pods-zither-dev-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B4B83C7DB2C0B07B60A0CFB8 /* Check Pods Manifest.lock */ = {
+		8BA76C0100223BAD52FBB2B5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		C06DD037DFE7BC75171D81E1 /* Copy Pods Resources */ = {
+		BEDB56462B7F4905EC2A630C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-zither/Pods-zither-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E8BDFE222E40D6B2FC537B0C /* Check Pods Manifest.lock */ = {
+		EA7408F85D9F30841B3B2F9B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-zither/Pods-zither-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -968,8 +1008,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -977,8 +1019,10 @@
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -991,10 +1035,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "b1373fcf-d4d4-47b1-98d2-37fb3c8be6bb";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1012,8 +1056,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -1023,16 +1069,17 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
-				PROVISIONING_PROFILE = "def60aca-a3f3-436d-bee5-3f289e834f2e";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1040,53 +1087,59 @@
 		};
 		268C10D51A8BDC5800F77BCF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B0E00F61876B2C6D011CE1B /* Pods.debug.xcconfig */;
+			baseConfigurationReference = A22AECB4911C189C378A0F62 /* Pods-zither.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(BUILT_PRODUCTS_DIR)",
 				);
 				GCC_PREFIX_HEADER = "zither/Zither-Prefix.pch";
 				INFOPLIST_FILE = zither/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.silberstudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b1373fcf-d4d4-47b1-98d2-37fb3c8be6bb";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		268C10D61A8BDC5800F77BCF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BCAF1BE8502091C9901CD7A3 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 5B66F804C8A647C19495341D /* Pods-zither.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(BUILT_PRODUCTS_DIR)",
 				);
 				GCC_PREFIX_HEADER = "zither/Zither-Prefix.pch";
 				INFOPLIST_FILE = zither/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.silberstudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "def60aca-a3f3-436d-bee5-3f289e834f2e";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
 		268C10E51A8BDDFC00F77BCF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B0E00F61876B2C6D011CE1B /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 760618784A1337AF2188D9C5 /* Pods-zither-dev.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1097,9 +1150,10 @@
 				);
 				GCC_PREFIX_HEADER = "zither/Zither-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/zither-dev-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.silberstudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "zither-dev";
 				PROVISIONING_PROFILE = "b1373fcf-d4d4-47b1-98d2-37fb3c8be6bb";
 			};
@@ -1107,7 +1161,7 @@
 		};
 		268C10E61A8BDDFC00F77BCF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BCAF1BE8502091C9901CD7A3 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 505FF759958BC560BD504423 /* Pods-zither-dev.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1118,9 +1172,10 @@
 				);
 				GCC_PREFIX_HEADER = "zither/Zither-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/zither-dev-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.silberstudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "zither-dev";
 				PROVISIONING_PROFILE = "76105228-31b9-4824-9dde-ad8a67b7747d";
 			};
@@ -1139,8 +1194,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -1150,16 +1207,17 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
-				PROVISIONING_PROFILE = "76105228-31b9-4824-9dde-ad8a67b7747d";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1167,30 +1225,33 @@
 		};
 		26A9FDC51A8C1EBB00E87E53 /* Testflight */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 20DD731EBCC546026D8A8512 /* Pods.testflight.xcconfig */;
+			baseConfigurationReference = 0BC52BEDA5376535FF3599AB /* Pods-zither.testflight.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(BUILT_PRODUCTS_DIR)",
 				);
 				GCC_PREFIX_HEADER = "zither/Zither-Prefix.pch";
 				INFOPLIST_FILE = zither/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.silberstudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "76105228-31b9-4824-9dde-ad8a67b7747d";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Testflight;
 		};
 		26A9FDC71A8C1EBB00E87E53 /* Testflight */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 20DD731EBCC546026D8A8512 /* Pods.testflight.xcconfig */;
+			baseConfigurationReference = 879797E461C5C0A67B79C24E /* Pods-zither-dev.testflight.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1201,9 +1262,10 @@
 				);
 				GCC_PREFIX_HEADER = "zither/Zither-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/zither-dev-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.silberstudios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "zither-dev";
 				PROVISIONING_PROFILE = "76105228-31b9-4824-9dde-ad8a67b7747d";
 			};

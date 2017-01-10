@@ -9,6 +9,7 @@
 #import "SSIDatePicker.h"
 
 @implementation SSIDatePicker
+@dynamic tag;
 
 + (SSIDatePicker *)viewWithTitle:(NSString *)title
                    defaultValue:(id)value

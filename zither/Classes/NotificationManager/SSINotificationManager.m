@@ -88,7 +88,7 @@ static SSINotificationManager *_notificationManager = nil;
 - (void)registerLocalNotificationForProduct:(PFObject *)product
 {
     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:[NSDate date]];
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:[NSDate date]];
     dateComponents.hour = 9;
     dateComponents.minute = 0;
     dateComponents.second = 0;

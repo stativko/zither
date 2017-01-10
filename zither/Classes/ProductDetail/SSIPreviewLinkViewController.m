@@ -154,7 +154,7 @@
         [self presentPDFReaderWithFilePath:filePath];
     } else {
         NSData *data = [NSData dataWithContentsOfFile:filePath];
-        [self.webView loadData:data MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:nil];
+        [self.webView loadData:data MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:[NSURL URLWithString:@""]];
     }
 }
 

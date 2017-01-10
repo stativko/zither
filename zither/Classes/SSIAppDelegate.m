@@ -16,6 +16,8 @@
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
 
+#define SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
 @implementation SSIAppDelegate
 
 + (SSIAppDelegate *)sharedDelegate
@@ -33,7 +35,8 @@
     DDLogError(@"Showing Error");
     
     [Crashlytics startWithAPIKey:@"a8612eae02d0a75c907bb68c09ea8a6e62f2a18e"];
-    [NotificationPermissionHandler checkPermissions];
+    
+    [self checkPermissions];
     
     // Start the Intercom session.  Normally, check if we're started, but
     // since we just finished launching, it's a safe assumption.  This also
@@ -115,6 +118,29 @@
 
 -(void)configureAppearance {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+}
+
+#pragma mark - 
+#pragma mark Notifications
+- (void)checkPermissions;
+{
+    if(SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(@"10.0")){
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        center.delegate = self;
+        [center requestAuthorizationWithOptions:(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge) completionHandler:^(BOOL granted, NSError * _Nullable error){
+            if(!error){
+                [[UIApplication sharedApplication] registerForRemoteNotifications];
+            }
+        }];
+    }
+    else {
+        UIUserNotificationType allNotificationTypes =
+        (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+        UIUserNotificationSettings *settings =
+        [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
 }
 
 - (void)application:(UIApplication *)application
