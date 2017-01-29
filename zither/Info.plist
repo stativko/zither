@@ -17,15 +17,22 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
+	<string>1.4</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>15</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Zither would like to access your camera to scan barcode/take photo of receipt/serial number/product image</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>Zither would like to access your photo library to get receipt/serial number/product image</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>FreightSans Bold.ttf</string>

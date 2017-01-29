@@ -63,7 +63,11 @@ NSString * const kIntercomSecurityOptionsHashKey = @"hmac";
         // called, or we're calling this function from there.
 
         // This is the line of code that needs to be updated:
-        [Parse setApplicationId:ParseAppId clientKey:ParseClientKey];
+        [Parse initializeWithConfiguration:[ParseClientConfiguration
+                                            configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) { configuration.applicationId = @"mMTrB3wQLb8nSlyL3BhQ48rVRfkHefHiFZ5JMqsw";
+                                                // apparently this is no longer needed, but if it is, uncomment this next line:
+                                                // configuration.clientKey = @"ptnM4TbedUjnCbxR7tduX7gwnORxIPrYAyg1sL6T";
+                                                configuration.server = @"https://zitherapp.herokuapp.com/parse"; }]];
 
         // taken from: https://github.com/ParsePlatform/parse-server/wiki/Parse-Server-Guide#using-parse-sdks-with-parse-server
         // [Parse initializeWithConfiguration:[ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
